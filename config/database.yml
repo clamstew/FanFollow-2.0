@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: fanfollow-development-andy
+  database: fanfollow-development-greg
   pool: 5
   port: 5432
   host: localhost
