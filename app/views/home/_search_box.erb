@@ -1,0 +1,140 @@
+ <%= stylesheet_link_tag 'search-box' %>
+
+ <form class="form-search" id="event-search-form">
+	  <div class="input-group">
+	    <input type="text" class="form-control" id="event-search-box" placeholder="Where are we going?" autocomplete="off" />
+	    <span class="input-group-btn">
+	    	<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+	  	</span>
+	  </div>
+		<div id="search-suggestions" class="drop-down"></div>
+  </form>
+
+	<script type="text/javascript">
+		// Search-box JS script by Andy. andy@andy.mu
+		var theForm = $('#event-search-form');
+		var searchBox = $('#event-search-box');
+		var eventsJSON = 'nil';
+		var eventsJSONLength = 0;
+		var firstFocus = 0;
+		var clickOutsideSearchBox = 0;
+		var tempEventID = -1;
+		var tempBoxString;
+
+		//Handle a form submission through jquery!
+		$(theForm).submit(function(e) {
+			e.preventDefault();
+			// alert('submited!');
+			var submit_path = "/";
+			var submittedValue = searchBox.val();
+			if (tempBoxString == submittedValue) {
+				//Suggestion accepted and submitted! We already know the eventID is tempEventID
+				submit_path = '/events/show/' + tempEventID;
+			} else {
+				//Non suggestion search
+				submit_path = '/events/show_all/' + submittedValue;
+			}
+			//Let's go!
+			// alert(submit_path);
+			window.location.href=(submit_path); //Load the new page
+		});
+	
+		var clearResults = function() {
+			$('#search-suggestions').empty();
+		};
+
+		var holdEventID = function(event_id, box_string) {
+			//Send a valid event_id to store it, otherwise send -1 to let clear it.
+				tempEventID = event_id;
+				tempBoxString = box_string;
+				// alert('hi' + tempEventID + tempBoxString);
+		};
+
+		//Listen for click on a suggestion:
+		var suggestionListen = function() {
+	 		$('div .suggestion').on('click', function() {
+	 			var div_id = this.id;
+	 			var event_id = div_id.split('_').pop();
+	 			// console.log(eventsJSON[event_id]);
+				$('#event-search-box').val(eventsJSON[event_id]);
+	 			var box_string = searchBox.val();
+				holdEventID(event_id, box_string);
+				clearResults();
+				focusCursor();
+			});
+		};
+
+		//Place the mouse cursor in the search box
+		var focusCursor = function() {
+			$(searchBox).focus();
+		};
+		focusCursor();
+
+		//Grab the even titles on first focus
+		// May need to change to doc on ready??? speed?
+		$(document).on('ready', function() {
+			if(firstFocus == 0) {
+				firstFocus = 1; //Ensure we only do this once.
+				eventsJSON = <%= raw @events_search.to_json %>;
+				console.log(eventsJSON); //Index-notation, remember to +1 when url'ing.
+			};
+			eventsJSONLength = Object.keys(eventsJSON).length;
+		});
+
+ 	  $(document).mouseup(function (e) {
+	    var container = $('.drop-down .suggestion');
+	    if (!container.is(e.target)) {
+	      container.hide();
+	    }
+		});
+
+
+		$(searchBox).on('click', function() {
+			$('.drop-down .suggestion').show();
+		});
+
+		//Allow arrow key navigation through options
+		// var suggestionX = 0;
+		// var arrowTab = function(key) {
+		// 	var numSuggestions = $('.drop-down .suggestion').length;
+		// 	if( (key.keyCode == 40) && (suggestionX < numSuggestions)) {
+		// 		suggestionX += 1;
+		// 	} else if( (key.keyCode == 38) && (suggestionX>0)) {
+		// 		suggestionX -= 1;
+		// 	} else {
+		// 		return;
+		// 	};
+		// 	$("#result_" + suggestionX + ".suggestion").on('click', function() {
+		// 		console.log('wtfff');
+		// 		alert('wtf');
+		// 	})
+		// };
+
+		$(searchBox).on('keyup', function(key) {
+			var searchQuery = $(this).val();
+			var searchQueryArray = searchQuery.split('');
+			//Reg expression search method
+			// Add more indexes to require more letters
+			if (searchQueryArray.length >= 2) {
+				var appendResults = function(i) {
+					$('#search-suggestions').append('<div class="suggestion" id="result_'+ i + '">' +result.input + '</br>' + '</div>');
+					suggestionListen();
+				};
+				clearResults(); 
+				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1], 'i');
+
+				for (var i=1; i<=eventsJSONLength; i++) {
+					console.log(eventsJSON[i]);
+					var result = regExpSearch.exec(eventsJSON[i]);
+					if (result != null) {
+						console.log('match!', result);
+						appendResults(i);
+					};
+				};
+			} else {
+				clearResults();
+			};
+
+		});
+ 		
+	</script>

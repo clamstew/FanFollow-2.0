@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'profile-page' %>
+<%= stylesheet_link_tag 'event-profile' %>
 	<br/>
 <div class="container">
   <div class="row">
@@ -9,33 +9,35 @@
   	<div class="col-md-3">
   		<div class="bio-box shadow">
         <a class="" href="#">
-            <img class="img-responsive dp center" src="<%= @user.image %>" />
+            <img class="img-responsive dp center" src="<%= @event.image %>" />
         </a>
-        <h3 class="name"><%= @first_name %></h3>
-        <h5 class="location"><%= @city %>, <%= @state %>, <%= @country %><br/><small><%=@role%></small></h5>
-        
+        <h3 class="name"><%=@title%></h3>
+        <h5 class="location"><%= @city %>, <%= @state %>, <%= @country %><br/><!-- TICKET SALES/COMMISSION??? <small><%=link_to @title,@tickets, target: "_blank"%></small> --></h5>
+
         <hr style="margin:8px auto">
         <div class="interests center">
-          <span class="label label-default">Star Wars</span>
-          <span class="label label-default">Anime</span>
-          <span class="label label-info">Phish</span>
-          <span class="label label-default">Grateful Dead</span>
+          <span class="label label-default">Some band</span>
+          <span class="label label-default">Some other band</span>
+          <span class="label label-info">A great band</span>
+          <span class="label label-default">Mad band</span>
         </div>
       </div>
     </div>
     <!-- End bio-box -->
 
-    <!-- Profile description box -->
+    <!-- Event description box -->
   	<div class="col-md-7 ">
       <!-- User description box -->
       <div class="description-box shadow">
         <div class="name-box">
-          <h4>Hey, I'm <%=@first_name%>!</h4>
+          <% if @local_start != nil #Render only if we have times%>
+          <h4><%=@local_start.strftime('%B %e, %Y')%> --> <%=@local_end.strftime('%B %e, %Y')%></h4>
+          <% end %>
         </div>
      	  <div class="text-content">
-          <p>I'm headed to Coachella, leaving April 8th and coming back April 6th. I like to listen to podcasts when I drive, please no smokers. Small dogs and hula-hoops welcome. </p>
+          <p><%= @description %> </p>
   		  </div>
-      </div><br/>
+      </div>
       <!-- User rides listing -->
       <div class="rides-box ">
         <div class="text-content">
@@ -47,6 +49,7 @@
               <li>Ride 2</li>
               <li>These will be dynamic</li>
             </ul>
+              <%= render partial: 'events/rides' %>
           </div>
         </div>
   	  </div>
@@ -54,7 +57,10 @@
       <!-- Spacing div - there must be a better way! -->
       </div>
     </div>
-    <!-- End profile description box -->
+    <!-- End event description box -->
+
+
+
 
   </div> <!-- end row -->
 </div> <!-- end container -->

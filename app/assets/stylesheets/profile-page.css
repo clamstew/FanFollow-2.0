@@ -11,7 +11,7 @@
 	  color: inherit;
 		border: 1px #7d7d7d solid;
 		padding: 0.2em;
-		border-radius: 3px;
+		border-radius: 8px;
 		color: #363637;
 	}
 
@@ -25,6 +25,7 @@
 		max-height: 330px;
 		padding-bottom: 0px;
 		clip:rect(10px,10px,10px,10px);
+		border-radius: 15px;
 	}
 
 	.bio-box .name {
