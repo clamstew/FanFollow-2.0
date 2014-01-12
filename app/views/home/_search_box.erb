@@ -5,42 +5,38 @@
 	    	<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 	  	</span>
 	  </div>
+		<div id="search-suggestions" style="font-size:2em"></div>
   </form>
 
 	<script type="text/javascript">
 		// Search-box JS script by Andy. andy@andy.mu
 		var searchBox = $('#event-search-box');
 		var eventsJSON = 'nil';
-		var eventsArray = [];
+		var eventsJSONLength = 0;
 		var firstFocus = 0;
+
 
 		//Grab the even titles on first focus
 		$(searchBox).on('focus', function() {
 			if(firstFocus == 0) {
 				firstFocus = 1; //Ensure we only do this once.
-				// eventsJSON = <%= raw @events.to_json %>;
 				eventsJSON = <%= raw @events_search.to_json %>;
-				// for(var i=0; i<eventsJSON.length;i++) {
-				// 	eventsArray.push(eventsJSON[i].title);
-				// };
 				console.log(eventsJSON); //Index-notation, remember to +1 when url'ing.
 			};
+			eventsJSONLength = Object.keys(eventsJSON).length;
 		});
-
 
 		$(searchBox).on('keyup', function() {
 			var searchQuery = $(this).val();
-			for(var i=0;i<eventsJSON.length;i++) {
-				console.log(eventsJSON[i].title);
-				console.log(searchQuery);
-				if(searchQuery.toUpperCase() == eventsJSON[i].title.toUpperCase()) {
-					console.log('YES!');
-					$('#searchBox-suggestions').slideDown('slow', function() {
-						console.log('no slide');
-					});
-				}
-				console.log(i);
-			}
+			// var searchQueryArray = searchQuery.split
+			console.log(searchQuery);
+			for(var i=0;i<eventsJSONLength;i++) {
+				if(eventsJSON[i]==searchQuery) {
+					console.log('yes!', searchQuery);
+					$('#search-suggestions').text(searchQuery);
+
+			};
+		};
 
 		});
 
