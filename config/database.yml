@@ -53,6 +53,6 @@ test:
   production:
     adapter: postgresql
     encoding: unicode
-    database: fanfollow_production
+    database: fanfollow_production_2
     pool: 5
     
