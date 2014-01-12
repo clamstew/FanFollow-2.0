@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag 'sec_profile_box2' %>
+	<br/>
+  <div class="container">
+  	<div class="row">
+      <div class="col-md-1 pull-left">
+        <!-- Spacing div - there must be a better way! -->
+      </div>
+	  	<div class="col-md-3">
+	  		<div class="bio-box">
+          <a class="" href="#">
+              <img class="img-responsive dp center" src="<%= @user.image %>" />
+          </a>
+          <h3 class="name"><%=@first_name%></h3>
+          <h5 class="location"><%= @city %>, <%= @state %>, <%= @country %><br/><small><%=@role%></small></h5>
+
+          <hr style="margin:8px auto">
+          <div class="interests center">
+            <span class="label label-default">Star Wars</span>
+            <span class="label label-default">Anime</span>
+            <span class="label label-info">Phish</span>
+            <span class="label label-default">Grateful Dead</span>
+          </div>
+        </div>
+      </div>
+
+
+		
+         <!-- Profile description box -->
+				<div class="col-md-7 ">
+          <div class="description-box">
+            <div class="name-box">
+              <h4>Hey, I'm <%=@first_name%>!</h4>
+            </div>
+         	  <div class="text-content">
+              <p>I am from Austin, TX  My husband and I are empty nesters sand we enjoy meeting new people, driving, entertaining, cycling, running and swimming.  </p>
+              <ul class="cars">
+                    <li>
+                      <i class="fa fa-road"></i>
+                      <strong>Rides:</strong>
+                      <p>Shitty mobile | Batmobile | Hunk a junk
+                      </p>
+                    </li>
+                </ul>
+  				  </div>
+          </div>
+				</div>
+        <div class="col-md-1 pull-right">
+        <!-- Spacing div - there must be a better way! -->
+      </div>
+   	</div>
+	</div>
+</div>
+
+
+
+
+
+		
+
+
+    </div> <!-- end row -->
+  </div> <!-- end container -->

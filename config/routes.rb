@@ -1,9 +1,13 @@
 Fanfollow::Application.routes.draw do
+
+  get '/users/show/:user_id' => 'users#show'
   devise_for :users
 
   # get '/', to: 'home#landing_page'
   # 
   root 'home#landing_page'
+
+
 
 
 

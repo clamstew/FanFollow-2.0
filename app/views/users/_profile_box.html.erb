@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'profile-box' %>
+<div class="content-section-a">
+	<div class="container">
+  	<div class="row">
+	  	<div class="col-md-3 pull-left">
+	      <div class="media profile-box">
+          <a class="pull-top" href="#">
+              <img class="media-object dp img-circle" src="<%= @user.image %>" style="width: 90%;height:90%;">
+          </a>
+          <div class="media-body">
+              <h3 class="media-heading"><%=@first_name %> <small> 
+                &nbsp;&nbsp; <%= @role %>
+              </small></h3>
+              <h5><%= @city %>, <%= @state %>, <%= @country %></h5>
+              <hr style="margin:8px auto">
+              <span class="label label-default">Star Wars</span>
+              <span class="label label-default">Anime</span>
+              <span class="label label-info">Phish</span>
+              <span class="label label-default">Grateful Dead</span>
+          </div>
+        </div>
+      </div>
+              <!-- Profile description box -->
+				<div class="col-md-9 pull-right profile-box">
+					
+        <div class="">
+          <h3>Hey, I'm <%=@first_name%>!</h3>
+        </div>
+          <p>I am from Austin, TX  My husband and I are empty nesters and we enjoy meeting new people, entertaining, cycling, running and swimming.  </p>
+            <ul class="school_work_groups unstyled">
+                <li>
+                  <div class="icon icon-book"></div>
+                  <strong>School:</strong>
+                  <p>McAllen High School, Texas State University-San Marcos</p>
+                </li>
+            </ul>
+
+        
+				</div>
+   	</div>
+	</div>
+</div>
+
