@@ -7,7 +7,7 @@
 	margin-top: -2px;
   margin-left: 1px;
   margin-right: 39px;
-	border: solid 1px;
+	border: solid 1px black;
   font-size: 1.2em;
   -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -20,8 +20,10 @@
   padding-left: 5%;
   padding-top: 1.5%;
   padding-bottom: 1.5%;
+  border: none;
 	color: #6b6c6d;
 	background: #fafafa;
+
 }
 
 .drop-down .suggestion:nth-child(even){
@@ -29,10 +31,26 @@
 	background: white;
 }
 
-.drop-down .suggestion:hover {
-	color: #414242;
-  -webkit-transition: color 50ms ease-out 50ms;
-  -moz-transition: color 50ms ease-out 50ms;
-  -o-transition: color 50ms ease-out 50ms;
-  transition: color 50ms ease-out 50ms;
+.drop-down .suggestion:last-child{
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
+
+.drop-down .suggestion:hover {
+  border: #ffffff;
+  cursor: pointer;
+	color: #ffffff;
+  background: rgba(125, 182, 255, 0.85);
+
+/*   -moz-box-shadow:    1px 1px 12px 2px #d2f93a;
+  -webkit-box-shadow: 1px 1px 12px 2px #d2f93a;
+  box-shadow:         1px 1px 12px 2px #d2f93a;*/
+}
+
+
+
+.shadow {
+   -moz-box-shadow:    0px 1px 12px 2px #ccc;
+    -webkit-box-shadow: 0px 1px 12px 2px #ccc;
+    box-shadow:         0px 1px 12px 2px #ccc;
+  }
