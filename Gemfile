@@ -8,9 +8,8 @@ gem 'pg'
 gem 'hirb'
 gem 'devise'
 
-group :production do
-  gem 'rails_12factor'
-end
+gem 'rails_12factor', group: :production
+
 
 
 # Use SCSS for stylesheets

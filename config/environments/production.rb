@@ -3,6 +3,8 @@ Fanfollow::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.action_dispatch.x_sendfile_header = ‘X-Accel-Redirect’
+
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
@@ -27,7 +29,7 @@ Fanfollow::Application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
