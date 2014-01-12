@@ -15,7 +15,6 @@
 		var eventsJSONLength = 0;
 		var firstFocus = 0;
 
-
 		//Grab the even titles on first focus
 		$(searchBox).on('focus', function() {
 			if(firstFocus == 0) {
@@ -26,18 +25,55 @@
 			eventsJSONLength = Object.keys(eventsJSON).length;
 		});
 
-		$(searchBox).on('keyup', function() {
-			var searchQuery = $(this).val();
-			// var searchQueryArray = searchQuery.split
-			console.log(searchQuery);
-			for(var i=0;i<eventsJSONLength;i++) {
-				if(eventsJSON[i]==searchQuery) {
-					console.log('yes!', searchQuery);
-					$('#search-suggestions').text(searchQuery);
-
-			};
+		//Suggestion selection by user code:
+		var suggestionListen = function() {
+	 		$('div .suggestion').on('click', function() {
+	 			var event_id = this.id
+	 			console.log(eventsJSON[event_id]);
+				$('#event-search-box').val(eventsJSON[event_id]);
+			});
 		};
 
+		$(searchBox).on('keyup', function(key) {
+			var searchQuery = $(this).val();
+			var searchQueryArray = searchQuery.split('');
+			var clearResults = function() {
+					$('#search-suggestions').empty();
+			};
+			//Reg expression search method
+			// Add more indexes to require more letters
+			if (searchQueryArray.length >= 3) {
+				var appendResults = function(i) {
+					$('#search-suggestions').append('<div class="suggestion" id=' + i + '>' +result.input + '</br>' + '</div>');
+					suggestionListen();
+				};
+				clearResults();
+				var regExpSearch = new RegExp(searchQueryArray[0] + searchQueryArray[1] + '+' + searchQueryArray[2]);
+				console.log(regExpSearch);
+
+				for (var i=1; i<=eventsJSONLength; i++) {
+					console.log(eventsJSON[i]);
+					var result = regExpSearch.exec(eventsJSON[i]);
+					if (result != null) {
+						console.log('match!', result);
+						appendResults(i);
+					};
+				};
+			} else {
+				clearResults();
+			};
+			//Old method
+			// console.log('array', searchQueryArray);
+			// console.log(searchQuery);
+			// for(var i=0;i<eventsJSONLength;i++) {
+			// 	if(eventsJSON[i]==searchQuery) {
+			// 		console.log('yes!', searchQuery);
+			// 		$('#search-suggestions').text(searchQuery);
+			// };
+
+		// };
 		});
+ 		
+ 	
 
 	</script>
