@@ -12,4 +12,13 @@ class EventsController < ActionController::Base
     render :layout => 'application'
   end
 
+  def show_all
+  	@params = params
+  	@search_string = params[:search_string]
+  	@events = Event.all
+  	# @search_similiar = @event.where
+    render :layout => 'application'
+
+  end
+
 end

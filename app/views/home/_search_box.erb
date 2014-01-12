@@ -24,7 +24,7 @@
 		//Handle a form submission through jquery!
 		$(theForm).submit(function(e) {
 			e.preventDefault();
-			alert('submited!');
+			// alert('submited!');
 			var submit_path = "/";
 			var submittedValue = searchBox.val();
 			if (tempBoxString == submittedValue) {
@@ -32,7 +32,7 @@
 				submit_path = '/events/show/' + tempEventID;
 			} else {
 				//Non suggestion search
-				submit_path = '/events/show_all?' + submittedValue;
+				submit_path = '/events/show_all/' + submittedValue;
 			}
 			//Let's go!
 			// alert(submit_path);
