@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag 'event-profile' %>
+	<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 pull-left">
+      <!-- Spacing div - there must be a better way! -->
+    </div>
+    <!-- Start bio box -->
+  	<div class="col-md-3">
+  		<div class="bio-box shadow">
+        <a class="" href="#">
+            <img class="img-responsive dp center" src="<%= @event.image %>" />
+        </a>
+        <h3 class="name"><%=@first_name%></h3>
+        <h5 class="location"><%= @city %>, <%= @state %>, <%= @country %><br/><small><%=@role%></small></h5>
+
+        <hr style="margin:8px auto">
+        <div class="interests center">
+          <span class="label label-default">Star Wars</span>
+          <span class="label label-default">Anime</span>
+          <span class="label label-info">Phish</span>
+          <span class="label label-default">Grateful Dead</span>
+        </div>
+      </div>
+    </div>
+    <!-- End bio-box -->
+
+    <!-- Profile description box -->
+  	<div class="col-md-7 ">
+      <!-- User description box -->
+      <div class="description-box shadow">
+        <div class="name-box">
+          <h4>Hey, I'm <%=@first_name%>!</h4>
+        </div>
+     	  <div class="text-content">
+          <p>I'm headed to Coachella, leaving April 8th and coming back April 6th. I like to listen to podcasts when I drive, please no smokers. Small dogs and hula-hoops welcome. </p>
+  		  </div>
+      </div><br/>
+      <!-- User rides listing -->
+      <div class="rides-box ">
+        <div class="text-content">
+          <div class="rides-box">
+            <h3><i class="fa fa-road"></i> Rides</h3>
+            <hr style="margin:8px auto">
+            <ul class="cars">
+              <li>Ride 1</li> 
+              <li>Ride 2</li>
+              <li>These will be dynamic</li>
+            </ul>
+          </div>
+        </div>
+  	  </div>
+      <div class="col-md-1 pull-right">
+      <!-- Spacing div - there must be a better way! -->
+      </div>
+    </div>
+    <!-- End profile description box -->
+
+  </div> <!-- end row -->
+</div> <!-- end container -->
