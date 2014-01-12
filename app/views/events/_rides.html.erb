@@ -1,13 +1,10 @@
- 
-<!-- Polaroid gallery -->
+hihihihasdasda<!-- Polaroid gallery -->
 <div class="row">
 	<div class="large-12 columns" style="overflow: visible">
 		<ul class="polaroids large-block-grid-4 small-block-grid-2">
 			Change the erb for rides when the model is ready: 
-	  <% @events.each do |ride| %>
-	  <li>
-	   <a href="<%=ride.title%>"
-	  </li>
+	  <% @rides.each do |ride| %>
+	   <%=ride.title%>
 	 	<% end %>
 
  <!-- Multiple Radios -->

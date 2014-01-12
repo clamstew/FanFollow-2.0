@@ -15,6 +15,10 @@ class EventsController < ActionController::Base
     @local_end = @event.end_datetime_local
     @UTC_start = @event.start_datetime_utc
     @UTC_end = @event.end_datetime_utc
+
+    # Rides to display
+    @rides = @event.rides
+
     render :layout => 'application'
   end
 
