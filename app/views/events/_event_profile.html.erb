@@ -25,17 +25,19 @@
     </div>
     <!-- End bio-box -->
 
-    <!-- Profile description box -->
+    <!-- Event description box -->
   	<div class="col-md-7 ">
       <!-- User description box -->
       <div class="description-box shadow">
         <div class="name-box">
-          <h4><%=@title%>!</h4>
+          <% if @local_start != nil #Render only if we have times%>
+          <h4><%=@local_start.strftime('%B %e, %Y')%> --> <%=@local_end.strftime('%B %e, %Y')%></h4>
+          <% end %>
         </div>
      	  <div class="text-content">
           <p><%= @description %> </p>
   		  </div>
-      </div><br/>
+      </div>
       <!-- User rides listing -->
       <div class="rides-box ">
         <div class="text-content">
@@ -47,6 +49,7 @@
               <li>Ride 2</li>
               <li>These will be dynamic</li>
             </ul>
+              <%= render partial: 'events/rides' %>
           </div>
         </div>
   	  </div>
@@ -54,7 +57,10 @@
       <!-- Spacing div - there must be a better way! -->
       </div>
     </div>
-    <!-- End profile description box -->
+    <!-- End event description box -->
+
+
+
 
   </div> <!-- end row -->
 </div> <!-- end container -->

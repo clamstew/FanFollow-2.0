@@ -120,9 +120,8 @@
 					$('#search-suggestions').append('<div class="suggestion" id="result_'+ i + '">' +result.input + '</br>' + '</div>');
 					suggestionListen();
 				};
-				clearResults();
+				clearResults(); 
 				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1], 'i');
-				console.log(regExpSearch);
 
 				for (var i=1; i<=eventsJSONLength; i++) {
 					console.log(eventsJSON[i]);
