@@ -50,10 +50,9 @@ test:
   port: 5432
   host: localhost
 
-  # production:
-  #   adapter: postgresql
-  #   encoding: unicode
-  #   database: fanfollow_production
-  #   pool: 5
-  #   username: fanfollow
-  #   password:
+  production:
+    adapter: postgresql
+    encoding: unicode
+    database: fanfollow_production
+    pool: 5
+    
