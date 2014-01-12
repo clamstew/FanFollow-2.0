@@ -9,6 +9,7 @@ class EventsController < ActionController::Base
     @state = @event.state
     @country = @event.country
     @url = @event.url
+    @tickets = @event.url
     render :layout => 'application'
   end
 
