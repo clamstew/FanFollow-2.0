@@ -1,11 +1,13 @@
+ <%= stylesheet_link_tag 'search-box' %>
+
  <form class="form-search">
 	  <div class="input-group">
-	    <input type="text" class="form-control" id="event-search-box" placeholder="Where do you want to go?" autocomplete="off" />
+	    <input type="text" class="form-control" id="event-search-box" placeholder="Where are we going?" autocomplete="off" />
 	    <span class="input-group-btn">
 	    	<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 	  	</span>
 	  </div>
-		<div id="search-suggestions" style="font-size:2em"></div>
+		<div id="search-suggestions" class="drop-down"></div>
   </form>
 
 	<script type="text/javascript">
@@ -14,8 +16,23 @@
 		var eventsJSON = 'nil';
 		var eventsJSONLength = 0;
 		var firstFocus = 0;
+		var clickOutsideSearchBox = 0;
+	
+		var clearResults = function() {
+			$('#search-suggestions').empty();
+		};
+		//Suggestion selection by user code:
+		var suggestionListen = function() {
+	 		$('div .suggestion').on('click', function() {
+	 			var event_id = this.id;
+	 			console.log(eventsJSON[event_id]);
+				$('#event-search-box').val(eventsJSON[event_id]);
+				clearResults();
+			});
+		};
 
 		//Grab the even titles on first focus
+		// May need to change to doc on ready??? speed?
 		$(searchBox).on('focus', function() {
 			if(firstFocus == 0) {
 				firstFocus = 1; //Ensure we only do this once.
@@ -25,30 +42,40 @@
 			eventsJSONLength = Object.keys(eventsJSON).length;
 		});
 
-		//Suggestion selection by user code:
-		var suggestionListen = function() {
-	 		$('div .suggestion').on('click', function() {
-	 			var event_id = this.id
-	 			console.log(eventsJSON[event_id]);
-				$('#event-search-box').val(eventsJSON[event_id]);
-			});
-		};
+		//Hide/show suggestions on focus/unfocus
+		// $(searchBox).on('blur', function(e) {
+		// 	//Don't hide the suggestions if we're clicking on the search box
+		// 	console.log(e);
+		// 	if(e.target != 'input#event-search-box.form-control') {
+		// 		$('.drop-down').hide();
+		// 	};
+		// });
+
+
+ 	  $(document).mouseup(function (e) {
+	    var container = $('.drop-down .suggestion');
+	    if (!container.is(e.target)) {
+	      container.hide();
+	    }
+		});
+
+		$(searchBox).on('click', function() {
+			$('.drop-down .suggestion').show();
+		});
+
 
 		$(searchBox).on('keyup', function(key) {
 			var searchQuery = $(this).val();
 			var searchQueryArray = searchQuery.split('');
-			var clearResults = function() {
-					$('#search-suggestions').empty();
-			};
 			//Reg expression search method
 			// Add more indexes to require more letters
-			if (searchQueryArray.length >= 3) {
+			if (searchQueryArray.length >= 2) {
 				var appendResults = function(i) {
 					$('#search-suggestions').append('<div class="suggestion" id=' + i + '>' +result.input + '</br>' + '</div>');
 					suggestionListen();
 				};
 				clearResults();
-				var regExpSearch = new RegExp(searchQueryArray[0] + searchQueryArray[1] + '+' + searchQueryArray[2]);
+				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1], 'i');
 				console.log(regExpSearch);
 
 				for (var i=1; i<=eventsJSONLength; i++) {
@@ -62,16 +89,7 @@
 			} else {
 				clearResults();
 			};
-			//Old method
-			// console.log('array', searchQueryArray);
-			// console.log(searchQuery);
-			// for(var i=0;i<eventsJSONLength;i++) {
-			// 	if(eventsJSON[i]==searchQuery) {
-			// 		console.log('yes!', searchQuery);
-			// 		$('#search-suggestions').text(searchQuery);
-			// };
 
-		// };
 		});
  		
  	
