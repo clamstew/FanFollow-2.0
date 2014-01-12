@@ -24,8 +24,9 @@
 		//Suggestion selection by user code:
 		var suggestionListen = function() {
 	 		$('div .suggestion').on('click', function() {
-	 			var event_id = this.id;
-	 			console.log(eventsJSON[event_id]);
+	 			var div_id = this.id;
+	 			var event_id = div_id.split('_').pop();
+	 			// console.log(eventsJSON[event_id]);
 				$('#event-search-box').val(eventsJSON[event_id]);
 				clearResults();
 			});
@@ -42,16 +43,6 @@
 			eventsJSONLength = Object.keys(eventsJSON).length;
 		});
 
-		//Hide/show suggestions on focus/unfocus
-		// $(searchBox).on('blur', function(e) {
-		// 	//Don't hide the suggestions if we're clicking on the search box
-		// 	console.log(e);
-		// 	if(e.target != 'input#event-search-box.form-control') {
-		// 		$('.drop-down').hide();
-		// 	};
-		// });
-
-
  	  $(document).mouseup(function (e) {
 	    var container = $('.drop-down .suggestion');
 	    if (!container.is(e.target)) {
@@ -59,19 +50,39 @@
 	    }
 		});
 
+
 		$(searchBox).on('click', function() {
 			$('.drop-down .suggestion').show();
 		});
 
+		//Allow arrow key navigation through options
+		var suggestionX = 0;
+		// var arrowTab = function(key) {
+		// 	var numSuggestions = $('.drop-down .suggestion').length;
+		// 	if( (key.keyCode == 40) && (suggestionX < numSuggestions)) {
+		// 		suggestionX += 1;
+		// 	} else if( (key.keyCode == 38) && (suggestionX>0)) {
+		// 		suggestionX -= 1;
+		// 	} else {
+		// 		return;
+		// 	};
+		// 	$("#result_" + suggestionX + ".suggestion").on('click', function() {
+		// 		console.log('wtfff');
+		// 		alert('wtf');
+		// 	})
+		// };
+
+
 
 		$(searchBox).on('keyup', function(key) {
+			// arrowTab(key);
 			var searchQuery = $(this).val();
 			var searchQueryArray = searchQuery.split('');
 			//Reg expression search method
 			// Add more indexes to require more letters
 			if (searchQueryArray.length >= 2) {
 				var appendResults = function(i) {
-					$('#search-suggestions').append('<div class="suggestion" id=' + i + '>' +result.input + '</br>' + '</div>');
+					$('#search-suggestions').append('<div class="suggestion" id="result_'+ i + '">' +result.input + '</br>' + '</div>');
 					suggestionListen();
 				};
 				clearResults();
@@ -92,6 +103,4 @@
 
 		});
  		
- 	
-
 	</script>
