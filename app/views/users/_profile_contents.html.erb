@@ -43,9 +43,9 @@
             <h3><i class="fa fa-road"></i> Rides</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <li>Ride 1</li> 
-              <li>Ride 2</li>
-              <li>These will be dynamic</li>
+              <% @rides.each do |ride| %>
+                <h3><a href="/rides/show/<%=ride.id%>"><%= ride.title %></a></h3>
+              <% end %>
             </ul>
           </div>
         </div>

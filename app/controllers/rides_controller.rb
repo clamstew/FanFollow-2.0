@@ -12,7 +12,8 @@ class RidesController < ActionController::Base
   	@driver = @ride.user
   	# user_id = @ride.user_id
   	# @driver = User.find(user_id)
-  	# @riders = @ride.
+  	@seats = Seat.all
+  	@user = User.all
     render :layout => 'application'
   end
 

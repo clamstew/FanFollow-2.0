@@ -31,8 +31,38 @@
         </div>
      	  <div class="text-content">
           <p><h3>Leaving on <%=@local_start.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@max_seats%></b> free seats and they cost <b style="color:green">$<%=@price%></b> a pop!</h3></p>
+          <br/>
+          		<!-- Multiple Radios -->
+      <div class="control-group">
+        <label class="control-label" for="Trip-Length">Trip Length</label>
+        <div class="controls">
+          <label class="radio" for="Trip-Length-0">
+            <input type="radio" name="Trip-Length" id="Trip-Length-0" value="One Way" checked="checked" required="required">
+            One Way
+          </label>
+          <label class="radio" for="Trip-Length-1">
+            <input type="radio" name="Trip-Length" id="Trip-Length-1" value="Round Trip" required="required">
+            Round Trip
+          </label>
+        </div>
+      </div>
+
+			
+      <!-- Button (Double) -->
+      <div class="control-group">
+        <label class="control-label" for="button1id"></label>
+        <div class="controls">
+          <button id="button1id" name="button1id" class="btn btn-success">Book A Seat!</button>
+          <button id="button2id" name="button2id" class="btn btn-info">Ask Driver A Question</button>
+				<!-- 	<h4>You'll be riding with these friendly folks:</h4> -->
+<!-- 					<% @seats.each do |rider| %>
+					<li><%= @user.find(rider.id).first_name %>
+					<% end %> -->
+        </div>
+      </div>
   		  </div>
       </div><br/>
+
       <div class="col-md-1 pull-right">
       <!-- Spacing div - there must be a better way! -->
       </div>
@@ -46,7 +76,7 @@
     </div>
   	<div class="col-md-3">
   		<div class="bio-box shadow">
-        <a class="" href="#">
+        <a class="" href="/users/show/<%=@driver.id%>">
             <img class="img-responsive dp center" src="<%= @driver.image %>" />
         </a>
         <h3 class="name">I'm <%= @driver.first_name %>, get in my van!</h3>
@@ -62,6 +92,8 @@
       </div>
     </div>
     <!-- End bio-box -->
+
+
 
 
 </div> <!-- end container -->
