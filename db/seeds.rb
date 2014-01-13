@@ -28,12 +28,9 @@
   Event.create!(title: "Big Day Out, Bris", city: "Brisbane", state: "QLD", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
 
   # Rides
-  shez = User.find(3)
-  shez.rides.create!(title: "Shizzy's New Bugatti", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/1600px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg", price_per_seat: "38", event_id: 1)
- 	kend = User.find(4)
-  kend.rides.create!(title: "Kendra's Mizzou Van", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://files.sharenator.com/funny_car_photo_cat_vehicle-s400x300-12996-580.jpg", price_per_seat: "89", event_id: 1,)
-  gamb = User.find(7)
-  gamb.rides.create!(title: "Gamble's Lumberjack Truck", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://whirledview.typepad.com/.a/6a00d834515f8469e2015433201b1c970c-pi", price_per_seat: "22", event_id: 1)
+  User.find(3).rides.create!(title: "Shizzy's New Bugatti", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/1600px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg", price_per_seat: "38", event_id: 1, user_id:3)
+  User.find(4).rides.create!(title: "Kendra's Mizzou Van", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://files.sharenator.com/funny_car_photo_cat_vehicle-s400x300-12996-580.jpg", price_per_seat: "89", event_id: 1, user_id: 4)
+  User.find(7).rides.create!(title: "Gamble's Lumberjack Truck", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://whirledview.typepad.com/.a/6a00d834515f8469e2015433201b1c970c-pi", price_per_seat: "22", event_id: 1, user_id: 7)
 
   # Seats
   User.find(5).seats.create!(ride_id: 1)  

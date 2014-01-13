@@ -1,0 +1,67 @@
+<%= stylesheet_link_tag 'profile-page' %>
+	<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 pull-left">
+      <!-- Spacing div - there must be a better way! -->
+    </div>
+    <!-- Start bio box -->
+  	<div class="col-md-3">
+  		<div class="bio-box shadow">
+        <a class="" href="#">
+            <img class="img-responsive dp center" src="<%= @ride.image %>" />
+        </a>
+        <h3 class="name"><%= @title %></h3>
+        <h5 class="location">Leaving from <%= @city %>!<br/><small><%=@role%></small></h5>
+        
+        <hr style="margin:8px auto">
+        <div class="interests center">
+         
+        </div>
+      </div>
+    </div>
+    <!-- End bio-box -->
+
+    <!-- Profile description box -->
+  	<div class="col-md-7 ">
+      <!-- User description box -->
+      <div class="description-box shadow">
+        <div class="name-box">
+          <h4><%=@title%> is heading to <%=@ride.event.title%>, <%=@ride.event.state%>!</h4>
+        </div>
+     	  <div class="text-content">
+          <p><h3>Leaving on <%=@local_start.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@max_seats%></b> free seats and they cost <b style="color:green">$<%=@price%></b> a pop!</h3></p>
+  		  </div>
+      </div><br/>
+      <div class="col-md-1 pull-right">
+      <!-- Spacing div - there must be a better way! -->
+      </div>
+    </div>
+    <!-- End profile description box -->
+  </div> <!-- end row -->
+  <!-- Start bio box -->
+  <br/>
+  <div class="col-md-1 pull-left">
+      <!-- Spacing div - there must be a better way! -->
+    </div>
+  	<div class="col-md-3">
+  		<div class="bio-box shadow">
+        <a class="" href="#">
+            <img class="img-responsive dp center" src="<%= @driver.image %>" />
+        </a>
+        <h3 class="name">I'm <%= @driver.first_name %>, get in my van!</h3>
+        <h5 class="location"><%= @driver.city %>, <%= @driver.state %>, <%= @driver.country %><br/><small><%=@driver.role%></small></h5>
+        
+        <hr style="margin:8px auto">
+        <div class="interests center">
+          <span class="label label-default">Star Wars</span>
+          <span class="label label-default">Anime</span>
+          <span class="label label-info">Phish</span>
+          <span class="label label-default">Grateful Dead</span>
+        </div>
+      </div>
+    </div>
+    <!-- End bio-box -->
+
+
+</div> <!-- end container -->

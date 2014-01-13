@@ -63,7 +63,7 @@
 	 
 	  <% @rides.each do |ride| %>
     <li>
-      <a href="rides/show/<%=ride.id%>" title="<%=ride.title%>">
+      <a href="/rides/show/<%=ride.id%>" title="<%=ride.title%>">
         <img alt="<%=ride.title%>" src="<%=ride.image%>" />
         <div class="ride_title"><%=ride.title%></div>
         <div class="ride_price">$<%=ride.price_per_seat%></div>
