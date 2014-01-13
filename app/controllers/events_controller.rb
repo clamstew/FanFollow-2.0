@@ -1,4 +1,5 @@
 class EventsController < ActionController::Base
+ 
   def show
   	@params = params
     @events = Event.all

@@ -8,10 +8,10 @@ class UsersController < ActionController::Base
     @state = @user.state
     @country = @user.country
   	# Do a quick role check
-  	if @user.role != nil 
-	    @role = @user.role
+    if @user.rides.count > 0
+      @role = 'Driver'
 	  else
-	    @role ='Passenger'
+      @role ='Passenger'
 	  end
     render :layout => 'application'
   end
