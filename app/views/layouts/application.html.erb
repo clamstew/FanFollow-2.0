@@ -5,9 +5,6 @@
   <%= stylesheet_link_tag 'bootstrap' %>
   <%= stylesheet_link_tag 'footer' %>
 
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
  <title>FanFollow</title>
   <%= csrf_meta_tags %>
 </head>
@@ -19,6 +16,11 @@
 <%= yield %>
 
 <%= render partial: 'partials/footer' %>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
 
 </body>
 </html>
