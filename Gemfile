@@ -10,6 +10,11 @@ gem 'pg'
 gem 'hirb'
 gem 'devise'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+end
+
 gem 'rails_12factor', group: :production
 
 
