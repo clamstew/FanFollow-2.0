@@ -6,10 +6,10 @@
       <!-- User description box -->
       <div class="description-box shadow">
         <div class="name-box">
-          <h4>Hey, I'm <%= @first_name %>!</h4>
+          <h4>Hey, I'm <%= current_user.first_name %>!</h4>
         </div>
         <div class="text-content">
-          <p>Well, what can I say?! I'm <%=@first_name%> and I live in <%= @city %>. </p>
+          <p>Well, what can I say?! I'm <%=current_user.first_name%> and I live in <%= current_user.city %>. </p>
         </div>
       </div><br/>
       <!-- User rides listing -->
@@ -19,7 +19,7 @@
             <h3><i class="fa fa-road"></i> Rides</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <% @rides.each do |ride| %>
+              <% current_user.rides.each do |ride| %>
                 <h3><a href="/rides/show/<%=ride.id%>"><%= ride.title %></a></h3>
               <% end %>
             </ul>
