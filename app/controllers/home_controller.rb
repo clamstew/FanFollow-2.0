@@ -8,4 +8,6 @@ class HomeController < ActionController::Base
   	end
     render :layout => 'application'
   end
+
+
 end

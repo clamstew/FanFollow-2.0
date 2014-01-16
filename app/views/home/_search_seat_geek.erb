@@ -1,0 +1,193 @@
+ <%= stylesheet_link_tag 'search-box' %>
+
+ <form class="form-search" id="event-search-form">
+	  <div class="input-group">
+	    <input type="text" class="form-control" id="event-search-box" placeholder="Where are we going?" autocomplete="off" />
+	    <span class="input-group-btn">
+	    	<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+	  	</span>
+	  </div>
+		<div id="search-suggestions" class="drop-down"></div>
+  </form>
+
+	<script type="text/javascript">
+		// Search-box JS script by Andy. andy@andy.mu
+		var theForm = $('#event-search-form');
+		var searchBox = $('#event-search-box');
+		var eventsJSON = 'nil';
+		var eventsJSONLength = 0;
+		var firstFocus = 0;
+		var clickOutsideSearchBox = 0;
+		var tempEventID = -1;
+		var tempBoxString;
+
+		//Key press pause time for API query
+		var pendingTimeout = 0;
+		var requiredKeyPause = 200; //Time in ms required after last keypress before querying seat geek
+		var timer = 0;
+
+		//Handle a form submission through jquery!
+		$(theForm).submit(function(e) {
+			e.preventDefault();
+			// alert('submited!');
+			var submit_path = "/";
+			var submittedValue = searchBox.val();
+			if (tempBoxString == submittedValue) {
+				//Suggestion accepted and submitted! We already know the eventID is tempEventID
+				submit_path = '/events/show/' + tempEventID;
+			} else {
+				//Non suggestion search
+				submit_path = '/events/show_all/' + submittedValue;
+			}
+			//Let's go!
+			// alert(submit_path);
+			window.location.href=(submit_path); //Load the new page
+		});
+	
+		var clearResults = function() {
+			$('#search-suggestions').empty();
+		};
+
+		var holdEventID = function(event_id, box_string) {
+			//Send a valid event_id to store it, otherwise send -1 to let clear it.
+				tempEventID = event_id;
+				tempBoxString = box_string;
+				// alert('hi' + tempEventID + tempBoxString);
+		};
+
+		//Listen for click on a suggestion:
+		var suggestionListen = function() {
+	 		$('div .suggestion').on('click', function() {
+	 			var div_id = this.id;
+	 			var event_id = div_id.split('_').pop();
+	 			// console.log(eventsJSON[event_id]);
+				$('#event-search-box').val(eventsJSON[event_id]);
+	 			var box_string = searchBox.val();
+				holdEventID(event_id, box_string);
+				clearResults();
+				focusCursor();
+			});
+		};
+
+		//Place the mouse cursor in the search box
+		var focusCursor = function() {
+			$(searchBox).focus();
+		};
+		focusCursor();
+
+		//Grab the even titles on first focus
+		// May need to change to doc on ready??? speed?
+		$(document).on('ready', function() {
+			if(firstFocus == 0) {
+				firstFocus = 1; //Ensure we only do this once.
+				eventsJSON = <%= raw @events_search.to_json %>;
+				console.log(eventsJSON); //Index-notation, remember to +1 when url'ing.
+			};
+			eventsJSONLength = Object.keys(eventsJSON).length;
+		});
+
+ 	  $(document).mouseup(function (e) {
+	    var container = $('.drop-down .suggestion');
+	    if (!container.is(e.target)) {
+	      container.hide();
+	    }
+		});
+
+
+		$(searchBox).on('click', function() {
+			$('.drop-down .suggestion').show();
+		});
+
+		//Allow arrow key navigation through options
+		// var suggestionX = 0;
+		// var arrowTab = function(key) {
+		// 	var numSuggestions = $('.drop-down .suggestion').length;
+		// 	if( (key.keyCode == 40) && (suggestionX < numSuggestions)) {
+		// 		suggestionX += 1;
+		// 	} else if( (key.keyCode == 38) && (suggestionX>0)) {
+		// 		suggestionX -= 1;
+		// 	} else {
+		// 		return;
+		// 	};
+		// 	$("#result_" + suggestionX + ".suggestion").on('click', function() {
+		// 		console.log('wtfff');
+		// 		alert('wtf');
+		// 	})
+		// };
+
+		$(searchBox).on('keyup', function(key) {
+			var searchQuery = $(this).val();
+			var searchQueryArray = searchQuery.split('');
+			//Reg expression search method
+			// Add more indexes to require more letters
+			if (searchQueryArray.length >= 3) {
+
+				//Seat geek AJAX API search
+				var seatGeekQuery = function(query) {	
+					var url = 'http://api.seatgeek.com/2/events?q=' + query + '&taxonomies.name=music_festival';
+					$.get(url, function (data) {
+				    console.log("The full response:", data);
+				    appendRemoteResults(data);
+					});
+				};
+
+				var appendLocalResults = function(i) {
+					$('#search-suggestions').append('<div class="suggestion" id="result_'+ i + '">' +result.input + '</br>' + '</div>');
+					suggestionListen();
+				};
+
+				var appendRemoteResults = function(data) {
+					
+					//Temp debug check
+					if (data.events.length == 0 ) {
+						console.log('no2results');
+						return;
+					} else {
+						console.log('results!');
+					};
+
+					for(var i=0; i<data.events.length; i++) {
+						$('#search-suggestions').append('<div class="suggestion" id="result_remote_'+ i + '">' + data.events[i].title + '</br>' + '</div>');
+					};
+					//suggestionListen();
+				};
+
+				clearResults(); 
+				//Local event table search
+				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1]  + '+' + searchQueryArray[2], 'i');
+				for (var i=1; i<=eventsJSONLength; i++) {
+					console.log(eventsJSON[i]);
+					var result = regExpSearch.exec(eventsJSON[i]);
+					if (result != null) {
+						//Local result match - display it!
+						console.log('match!', result);
+						appendLocalResults(i);
+					};
+				};
+
+				//Seat geek stuff!
+				//Time since last keypress - prevent flooding of the seat geek API by requiring a pause after last keypress before querying
+				var startKeyTime = function() {
+				  timer = setTimeout(function() {
+					seatGeekQuery(searchQuery); //Queery the SeatGeekAPI with the searchQuery
+					pendingTimeout = 0; //Only gets changed once the timeout is executed.
+					}, requiredKeyPause);
+				};
+
+				if(pendingTimeout == 1) { //If there is already a setTimeout timer running
+					clearTimeout(timer); //Clear it
+					startKeyTime(); //Start a new timer
+				} else {
+					startKeyTime(); //Start a new timer
+					pendingTimeout = 1;
+				}
+
+			} else {
+				clearResults();
+			};
+		});
+
+ //Search all festival data: 
+ // http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000
+ 		
+	</script>
