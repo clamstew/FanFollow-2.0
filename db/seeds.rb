@@ -36,4 +36,6 @@
   User.find(5).seats.create!(ride_id: 1)  
   User.find(2).seats.create!(ride_id:3)
   User.find(8).seats.create!(ride_id:1)
+  User.find(3).seats.create!(ride_id:1)
+
 

@@ -1,13 +1,51 @@
+<%= stylesheet_link_tag 'profile-page' %>
 
-<div class="content-section-a">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5">
-      <h2>Welcome Back <%= current_user.first_name %> !</h2>
-        <%= render partial: 'users/bio_box' %>
-        <%= render partial: 'users/profile_description_box' %>
+  <div class="content-section-a">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <%= render partial: 'users/bio_box' %>
+                          <!-- Profile description box -->
+                      <div class="col-md-7 ">
+                        <!-- User description box -->
+                        <div class="description-box shadow">
+                          <div class="name-box">
+                            <h2>Welcome Back <%= current_user.first_name %>!</h2>
+                          </div>
+                        </div><br/>
+                        <!-- User rides listing -->
+                        <div class="rides-box">
+                                    <h3><i class="fa fa-road"></i>Driver:</h3>
+                                    <hr style="margin:8px auto">
+                                    <ul class="cars">
+                                      <% current_user.rides.each do |ride| %>
+                                        <h3><a href="/rides/show/<%=ride.id%>"><%=ride.title %></a></h3>
+                                      <% end %>
+                                    </ul>
+                                  </div>
 
-    </div>  
-  </div>
-</div>      
-        
+                                    <h3><i class="fa fa-road"></i>Passenger:</h3>
+                                    <hr style="margin:8px auto">
+                                    <ul class="cars">
+                                      <% current_user.seats.each do |seat| %>
+                                        <h3><a href="/rides/show/<%=seat.ride.id%>"><%=seat.ride.title %></a></h3>
+                                      <% end %>
+                                    </ul>
+                                  
+                                  <%= render partial: 'home/search_box' %>
+
+
+                                  </div>
+
+
+                      </div>
+                      <!-- End profile description box -->
+
+      
+
+
+
+      </div>  
+    </div>
+  </div>      
+          
