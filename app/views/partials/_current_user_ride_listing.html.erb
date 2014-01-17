@@ -1,11 +1,11 @@
-<!-- User rides listing -->
+ <!-- User rides listing -->
       <div class="rides-box ">
         <div class="text-content">
           <div class="rides-box">
-            <h3><i class="fa fa-road"></i>Rides</h3>
+            <h3><i class="fa fa-road"></i>Looks Like Your Driving:</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <% @user.rides.each do |ride| %>
+              <% current_user.rides.each do |ride| %>
                 <h3><a href="/rides/show/<%=ride.id%>"><%= ride.title %></a></h3>
               <% end %>
             </ul>

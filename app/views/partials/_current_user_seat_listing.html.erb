@@ -5,7 +5,7 @@
             <h3><i class="fa fa-road"></i>Rides Your Catching:</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <% @user.seats.each do |seat| %>
+              <% current_user.seats.each do |seat| %>
                 <h3><a href="/rides/show/<%=seat.ride.id%>"><%= seat.ride.title %></a></h3>
               <% end %>
             </ul>
