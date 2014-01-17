@@ -1,6 +1,9 @@
-class PopulateController < ApplicationController
-  def load
-  	uri = URI.parse("http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000")
+
+
+namespace :populate do
+
+	task :festivals => :environment do
+		uri = URI.parse("http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000")
  
 		http = Net::HTTP.new(uri.host, uri.port)
 		request = Net::HTTP::Get.new(uri.request_uri)
@@ -25,7 +28,7 @@ class PopulateController < ApplicationController
 		  puts "ERROR!!!"
 		end
 
-		@count = Event.count
+	end
 
-  end
 end
+
