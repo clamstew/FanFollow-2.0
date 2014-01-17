@@ -1,4 +1,4 @@
-class RidesController < ActionController::Base
+class RidesController < ApplicationController
  
   def show
   	@params = params

@@ -1,5 +1,7 @@
 Fanfollow::Application.routes.draw do
 
+  get '/populate/load' => 'populate#load'
+
   get '/users/show/:user_id' => 'users#show'
   
   get '/events/show/:event_id' => 'events#show'

@@ -12,6 +12,11 @@ gem 'devise'
 
 gem 'rails_12factor', group: :production
 
+# Experimental for this branch
+require "json"
+require "net/http"
+require "uri"
+
 
 
 # Use SCSS for stylesheets
