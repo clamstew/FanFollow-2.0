@@ -7,7 +7,6 @@ gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem 'hirb'
 gem 'devise'
 
 gem 'rails_12factor', group: :production
@@ -42,6 +41,18 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development do
+
+end
+
+group :test do
+
+end
+
+group :development, :test do
+
 end
 
 # Use ActiveModel has_secure_password

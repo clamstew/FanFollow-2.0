@@ -12,7 +12,7 @@ namespace :populate do
 		 
 		if response.code == "200"
 		  result = JSON.parse(response.body)
-		  
+		  i = 0
 		  result["events"].each do |event|
 		  	title = event["title"]
 		  	title = title.truncate(255)
@@ -23,6 +23,10 @@ namespace :populate do
 		  	url = url.truncate(255)
 		  	start_datetime_local = event["datetime_local"]
 		  	Event.create!(title: title, city: city, state: state, country: country, url: url, start_datetime_local: start_datetime_local, end_datetime_local: "2015-06-15 00:00:00 UTC")
+		 		i += 1
+		 		if i%100 == 0 
+		 			puts "grabbed #{i} events"
+		 		end
 		  end
 		else
 		  puts "ERROR!!!"
