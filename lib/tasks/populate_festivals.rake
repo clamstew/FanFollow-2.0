@@ -3,7 +3,10 @@
 namespace :populate do
 
 	task :festivals => :environment do
-		uri = URI.parse("http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000")
+
+		current_event_count = Event.count
+		grab_uri = "http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000"
+		uri = URI.parse(grab_uri)
  
 		http = Net::HTTP.new(uri.host, uri.port)
 		request = Net::HTTP::Get.new(uri.request_uri)
@@ -12,6 +15,8 @@ namespace :populate do
 		 
 		if response.code == "200"
 		  result = JSON.parse(response.body)
+
+		  puts "Grabbed #{result["events"].length} events by #{grab_uri}"
 		  i = 0
 		  result["events"].each do |event|
 		  	title = event["title"]
@@ -22,15 +27,19 @@ namespace :populate do
 		  	url = event["url"]
 		  	url = url.truncate(255)
 		  	start_datetime_local = event["datetime_local"]
-		  	Event.create!(title: title, city: city, state: state, country: country, url: url, start_datetime_local: start_datetime_local, end_datetime_local: "2015-06-15 00:00:00 UTC")
+		  	Event.where(title: title, city: city, state: state, country: country, url: url, start_datetime_local: start_datetime_local, end_datetime_local: "2015-06-15 00:00:00 UTC").first_or_create
 		 		i += 1
 		 		if i%100 == 0 
-		 			puts "grabbed #{i} events"
+		 			puts "Processed #{i} events"
 		 		end
 		  end
 		else
 		  puts "ERROR!!!"
 		end
+
+		new_event_count = Event.count
+		new_events = new_event_count - current_event_count 
+		puts "created #{new_events} new events"
 
 	end
 
