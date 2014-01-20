@@ -12,6 +12,7 @@ end
   get '/events/show_all/:search_string' => 'events#show_all'
   
   get '/rides/show/:ride_id' => 'rides#show'
+  # post '/rides/create/:ride_id' 
 
   devise_for :users
   
