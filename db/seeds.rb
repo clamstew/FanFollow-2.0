@@ -17,15 +17,18 @@
   User.create!(first_name: "Clay", last_name: "Stewart", email: "clay@clay.com", password: "ok123456", city: "Austin", state: "TX", country: "USA", image: "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/1072602_649788227468_1573908158_o.jpg")
   User.create!(first_name: "Shaan", last_name: "Shah", email: "shaan@shaah.com", password: "ok123456", city: "Austin", state: "TX", country: "USA", image: "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash2/819408_10151378874079699_689397579_o.jpg")
 
-  # Events
-  Event.create!(title: "Bonnaroo", city: "Manchester", state: "TN", country: "USA", url: "http://www.bonnaroo.com/", image: "http://www.bonnaroo.com/wp-content/uploads/2012/01/Screen-shot-2012-12-10-at-3.43.48-PM.png", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
-  Event.create!(title: "Bohemia Arts Festival", city: "Cedar Rapids", state: "IO", country: "USA", url: "http://www.bonnaroo.com/", image: "http://bohemianfestival.files.wordpress.com/2012/08/bohemian-festival-2013-1.jpg%3Fw%3D700%26h%3D394", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
-  Event.create!(title: "Bo Festival", city: "Manchester", state: "TN", country: "USA", url: "http://www.bonnaroo.com/", image: "http://www.bonnaroo.com/wp-content/uploads/2012/01/Screen-shot-2012-12-10-at-3.43.48-PM.png", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
-  Event.create!(title: "Bo'ness Real Ale Festival", city: "Bo'ness", state: "Scotland", country: "USA", url: "http://www.bonnaroo.com/", image: "http://upload.wikimedia.org/wikipedia/commons/8/82/Cuillin-mountains-scotland-backside.jpg", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
-  Event.create!(title: "Coachella", city: " Indio", state: "CA", country: "USA", url: "http://www.coachella.com/", image: "http://cheekychicago.com/wp-content/uploads/2013/02/coachella2.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
-  Event.create!(title: "Big Day Out, Syd", city: "Sydney", state: "NSW", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
-  Event.create!(title: "Big Day Out, Mel", city: "Melbourne", state: "VIC", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
-  Event.create!(title: "Big Day Out, Bris", city: "Brisbane", state: "QLD", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
+  # Seatgeek 
+
+
+  #Events
+  # Event.create!(title: "Bonnaroo", city: "Manchester", state: "TN", country: "USA", url: "http://www.bonnaroo.com/", image: "http://www.bonnaroo.com/wp-content/uploads/2012/01/Screen-shot-2012-12-10-at-3.43.48-PM.png", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
+  # Event.create!(title: "Bohemia Arts Festival", city: "Cedar Rapids", state: "IO", country: "USA", url: "http://www.bonnaroo.com/", image: "http://bohemianfestival.files.wordpress.com/2012/08/bohemian-festival-2013-1.jpg%3Fw%3D700%26h%3D394", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
+  # Event.create!(title: "Bo Festival", city: "Manchester", state: "TN", country: "USA", url: "http://www.bonnaroo.com/", image: "http://www.bonnaroo.com/wp-content/uploads/2012/01/Screen-shot-2012-12-10-at-3.43.48-PM.png", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
+  # Event.create!(title: "Bo'ness Real Ale Festival", city: "Bo'ness", state: "Scotland", country: "USA", url: "http://www.bonnaroo.com/", image: "http://upload.wikimedia.org/wikipedia/commons/8/82/Cuillin-mountains-scotland-backside.jpg", start_datetime_local: "2014-06-12 00:00:00 UTC", end_datetime_local: "2014-06-15 00:00:00 UTC")
+  # Event.create!(title: "Coachella", city: " Indio", state: "CA", country: "USA", url: "http://www.coachella.com/", image: "http://cheekychicago.com/wp-content/uploads/2013/02/coachella2.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
+  # Event.create!(title: "Big Day Out, Syd", city: "Sydney", state: "NSW", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
+  # Event.create!(title: "Big Day Out, Mel", city: "Melbourne", state: "VIC", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
+  # Event.create!(title: "Big Day Out, Bris", city: "Brisbane", state: "QLD", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
 
   # Rides
   User.find(3).rides.create!(title: "Shizzy's New Bugatti", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/1600px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg", price_per_seat: "38", event_id: 1, user_id:3)
@@ -37,5 +40,6 @@
   User.find(2).seats.create!(ride_id:3)
   User.find(8).seats.create!(ride_id:1)
   User.find(3).seats.create!(ride_id:1)
+
 
 

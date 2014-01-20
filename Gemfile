@@ -7,8 +7,8 @@ gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-gem 'hirb'
 gem 'devise'
+gem 'hirb'
 
 group :development do
   gem 'better_errors'
@@ -17,7 +17,10 @@ end
 
 gem 'rails_12factor', group: :production
 
-
+# For seatgeek API rake tasks
+require "json"
+require "net/http"
+require "uri"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -44,3 +47,26 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+
+end
+
+group :test do
+
+end
+
+group :development, :test do
+
+end
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.1.2'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]

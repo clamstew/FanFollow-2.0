@@ -3,8 +3,8 @@ Fanfollow::Application.routes.draw do
   resources :dashboard
 
   authenticated :user do
-  root :to => "dashboard#show", :as => 'authenticated_root'
-end
+    root :to => "dashboard#show", :as => 'authenticated_root'
+  end
 
   get '/users/show/:user_id' => 'users#show'
   
@@ -16,7 +16,5 @@ end
   devise_for :users
   
   root :to =>'home#landing_page'
-
-
 
 end

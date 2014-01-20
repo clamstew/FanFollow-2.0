@@ -1,4 +1,4 @@
-class HomeController < ActionController::Base
+class HomeController < ApplicationController
   def landing_page
   	@events = Event.all
   	@events_search = Hash.new
@@ -8,4 +8,6 @@ class HomeController < ActionController::Base
   	end
     render :layout => 'application'
   end
+
+
 end
