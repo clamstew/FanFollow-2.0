@@ -8,7 +8,6 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'devise'
-gem 'hirb'
 
 group :development do
   gem 'better_errors'
@@ -56,7 +55,7 @@ group :test do
 end
 
 group :development, :test do
-
+	gem 'hirb'
 end
 
 # Use ActiveModel has_secure_password
