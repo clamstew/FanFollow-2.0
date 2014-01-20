@@ -8,10 +8,11 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'devise'
+gem 'hirb'
 
 gem 'rails_12factor', group: :production
 
-# Experimental for this branch
+# For seatgeek API rake tasks
 require "json"
 require "net/http"
 require "uri"
