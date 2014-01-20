@@ -74,4 +74,26 @@
   <div class="col-md-1 pull-left">
       <!-- Spacing div - there must be a better way! -->
     </div>
-  	
+  	<div class="col-md-3">
+  		<div class="bio-box shadow">
+        <a class="" href="/users/show/<%=@driver.id%>">
+            <img class="img-responsive dp center" src="<%= @driver.image %>" />
+        </a>
+        <h3 class="name">I'm <%= @driver.first_name %>, get in my van!</h3>
+        <h5 class="location"><%= @driver.city %>, <%= @driver.state %>, <%= @driver.country %><br/><small><%=@driver.role%></small></h5>
+        
+        <hr style="margin:8px auto">
+        <div class="interests center">
+          <span class="label label-default">Star Wars</span>
+          <span class="label label-default">Anime</span>
+          <span class="label label-info">Phish</span>
+          <span class="label label-default">Grateful Dead</span>
+        </div>
+      </div>
+    </div>
+    <!-- End bio-box -->
+
+
+
+
+</div> <!-- end container -->
