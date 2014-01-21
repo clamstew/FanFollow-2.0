@@ -2,7 +2,7 @@ class RidesController < ApplicationController
  
   def show
   	@params = params
-  	@rides = Ride.allgit 
+  	@rides = Ride.all
   	@ride = Ride.find(params[:id])
   	@title = @ride.title
   	@local_start = @ride.departure_time_local
@@ -14,18 +14,24 @@ class RidesController < ApplicationController
   	# @driver = User.find(user_id)
   	@seats = Seat.all
   	@user = User.all
-    render :layout => 'application'
   end
   
   def new
-    @event_id = params[:event_id]
-    @ride = Ride.new
+    event = Event.find(params[:event_id])
+    @ride = event.rides.new(user_id: current_user)
   end
 
   def create
-    @ride = Ride.new(ride_params)
+    ride_params = params
+    @ride = Ride.new(
+      title: ride_params["ride"]["title"], 
+      origin: ride_params["ride"]["origin"], 
+      max_seats: ride_params["ride"]["max_seats"], 
+      price_per_seat: ride_params["ride"]["price_per_seat"], 
+      departure_time_local: ride_params["ride"]["departure_time_local"]
+    )
     if @ride.save
-      redirect_to @ride
+      redirect_to root_path
     end
   end
 

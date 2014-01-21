@@ -14,12 +14,14 @@
     <div><%= f.label :price_per_seat %><br />
     <%= f.number_field :price_per_seat %></div>
 
+    <div><%= f.label :departure_time_local %><br />
+    <%= f.datetime_local_field :departure_time_local %></div>
+
     <div><%= f.label :image %><br />
     <%= f.text_field :image %></div>
 
     <br>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :event_id, :value => @event_id %>
+    
 
     <%= f.submit %>
 
