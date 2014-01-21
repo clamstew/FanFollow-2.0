@@ -1,29 +1,27 @@
 <%= stylesheet_link_tag 'profile-page' %>
 
-  <div class="content-section-a">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
-          <div class="description-box shadow">
-            <div class="name-box">
-              <h2>Welcome Back <%= current_user.first_name %>!</h2>
-            </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="description-box shadow">
+          <div class="name-box">
+            <h2>Welcome Back <%= current_user.first_name %>!</h2>
           </div>
-          
-          <br>
+        </div>
+        
+        <br>
 
-          <%= render partial: 'partials/current_user_bio_box' %>
-          <h2>View Your Upcoming Trips:</h2>
-          <%= render partial: 'partials/current_user_ride_listing' %>
-          <%= render partial: 'partials/current_user_seat_listing' %>
-   
-          <br>
-                    
-      <h3>Looking to start a new journey?</h3><%= render partial: 'partials/search_box' %>
+        <%= render partial: 'partials/current_user_bio_box' %>
+        <h2>View Your Upcoming Trips:</h2>
+        <%= render partial: 'partials/current_user_ride_listing' %>
+        <%= render partial: 'partials/current_user_seat_listing' %>
+
+        <br>
+                  
+    <h3>Looking to start a new journey?</h3><%= render partial: 'partials/search_box' %>
 
 
 
-      </div>  
+    </div>  
     </div>
-  </div>      
     
