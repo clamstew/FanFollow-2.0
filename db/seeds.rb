@@ -16,7 +16,7 @@
   User.create!(first_name: "Gamble", last_name: "McAdam", email: "gamble@lumberjack.com", password: "ok123456", city: "Austin", state: "TX", country: "USA", image: "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-prn2/1267063_10152519149455476_1464897040_o.jpg")
   User.create!(first_name: "Clay", last_name: "Stewart", email: "clay@clay.com", password: "ok123456", city: "Austin", state: "TX", country: "USA", image: "https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/1072602_649788227468_1573908158_o.jpg")
   User.create!(first_name: "Shaan", last_name: "Shah", email: "shaan@shaah.com", password: "ok123456", city: "Austin", state: "TX", country: "USA", image: "https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash2/819408_10151378874079699_689397579_o.jpg")
-
+  
   # Seatgeek 
 
 
@@ -31,15 +31,15 @@
   # Event.create!(title: "Big Day Out, Bris", city: "Brisbane", state: "QLD", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
 
   # Rides
-  User.find(3).rides.create!(title: "Shizzy's New Bugatti", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/1600px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg", price_per_seat: "38", event_id: 1, user_id:3)
+  User.find(3).rides.create!(title: "Shizzy's New Bugatti", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg/1600px-Bugatti_Veyron_16.4_%E2%80%93_Frontansicht_%282%29%2C_5._April_2012%2C_D%C3%BCsseldorf.jpg", price_per_seat: "38", event_id: 1, user_id: 3)
   User.find(4).rides.create!(title: "Kendra's Mizzou Van", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://files.sharenator.com/funny_car_photo_cat_vehicle-s400x300-12996-580.jpg", price_per_seat: "89", event_id: 1, user_id: 4)
   User.find(7).rides.create!(title: "Gamble's Lumberjack Truck", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://whirledview.typepad.com/.a/6a00d834515f8469e2015433201b1c970c-pi", price_per_seat: "22", event_id: 1, user_id: 7)
 
   # Seats
-  User.find(5).seats.create!(ride_id: 1)  
+  User.find(5).seats.create!(ride_id: 1) 
+  User.find(3).seats.create!(ride_id: 2) 
   User.find(2).seats.create!(ride_id:3)
   User.find(8).seats.create!(ride_id:1)
-  User.find(3).seats.create!(ride_id:1)
 
 
 
