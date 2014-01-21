@@ -2,7 +2,7 @@ class RidesController < ApplicationController
  
   def show
   	@params = params
-  	@rides = Ride.all
+  	@rides = Ride.allgit 
   	@ride = Ride.find(params[:id])
   	@title = @ride.title
   	@local_start = @ride.departure_time_local
