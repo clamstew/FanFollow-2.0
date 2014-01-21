@@ -7,12 +7,11 @@ Fanfollow::Application.routes.draw do
     root :to => "dashboard#show", :as => 'authenticated_root'
   end
 
-  get '/users/show/:user_id' => 'users#show'
+  get '/users/show/:user_id' => 'users#show', :as => 'show_user'
   
   get '/events/show/:event_id' => 'events#show'
-  get '/events/show_all/:search_string' => 'events#show_all'
   
-  get '/rides/show/:id' => 'rides#show'
+  get '/rides/show/:ride_id' => 'rides#show', :as => 'show_ride'
   get '/rides/new' => 'rides#new', :as => 'new_ride'
   post '/rides' => 'rides#create'
 
