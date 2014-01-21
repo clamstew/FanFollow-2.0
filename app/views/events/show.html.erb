@@ -1,1 +1,72 @@
-<%= render partial: 'partials/event_profile' %>
+<%= stylesheet_link_tag 'event-profile' %>
+	<br/>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 pull-left">
+      <!-- Spacing div - there must be a better way! -->
+    </div>
+    <!-- Start bio box -->
+  	<div class="col-md-3">
+  		<div class="bio-box shadow">
+        <a class="" href="#">
+            <img class="img-responsive dp center" src="<%= @event.image %>" />
+        </a>
+        <h3 class="name"><%=@title%></h3>
+        <h5 class="location"><%= @city %>, <%= @state %>, <%= @country %><br/><!-- TICKET SALES/COMMISSION??? <small><%=link_to @title,@tickets, target: "_blank"%></small> --></h5>
+
+        <hr style="margin:8px auto">
+        <div class="interests center">
+          <span class="label label-default">The G Pfeff experience</span>
+          <span class="label label-default">Some other band</span>
+          <span class="label label-info">A great band</span>
+          <span class="label label-default">Mad band</span>
+        </div>
+      </div>
+    </div>
+    <!-- End bio-box -->
+
+    <!-- Event description box -->
+  	<div class="col-md-7 ">
+      <!-- User description box -->
+      <div class="description-box shadow">
+        <div class="name-box">
+          <% if @local_start != nil #Render only if we have times%>
+          <h4><%=@local_start.strftime('%B %e, %Y')%> to <%=@local_end.strftime('%B %e, %Y')%></h4>
+          <% end %>
+        </div>
+     	  <div class="text-content">
+          <p><%= @description %> </p>
+  		  </div>
+      </div>
+      <!-- User rides listing -->
+      <div class="rides-box ">
+        <div class="text-content">
+          <div class="rides-box">
+            <h3><i class="fa fa-road"></i> Rides</h3>
+            <hr style="margin:8px auto">
+         <!--    <ul class="cars">
+              <li>Ride 1</li> 
+              <li>Ride 2</li>
+              <li>These will be dynamic</li>
+            </ul> -->
+            <% if @rides.count < 1 %>
+              <h3><b>There's nobody here... <br/></h3><h4>You're hitch-hiking to <%= @title %></b></h4>
+            <%else%>
+              <%= render partial: 'partials/rides' %>
+            <%end%>
+
+          </div>
+        </div>
+  	  </div>
+      <div class="col-md-1 pull-right">
+      <!-- Spacing div - there must be a better way! -->
+      </div>
+    </div>
+    <!-- End event description box -->
+    <%= link_to 'Create New Ride', new_ride_path(event_id:@event.id) %>
+
+
+
+
+  </div> <!-- end row -->
+</div> <!-- end container -->
