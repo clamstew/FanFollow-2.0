@@ -56,6 +56,8 @@ end
 
 group :development, :test do
 	gem 'hirb'
+	gem 'pry-plus'
+	gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password
