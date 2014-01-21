@@ -5,10 +5,13 @@
             <h3><i class="fa fa-road"></i>Looks Like Your Driving:</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <% current_user.rides.each do |ride| %>
-                <h3><a href="/rides/show/<%=ride.id%>"><%= ride.title %></a></h3>
+              <ul>
+              <% @driving.each do |driving| %>
+                <li>
+                  <h3><%= link_to driving.title, show_ride_path(ride_id: driving.id) %></h3>
+                </li>
               <% end %>
-            </ul>
+             </ul>
           </div>
         </div>
       </div> <!-- End rides listing -->
