@@ -1,16 +1,19 @@
 <style type="text/css">
 	video {  
    background:transparent url('fanfollow-bg-image.png') no-repeat 0 0; 
-   -webkit-background-size:cover; 
+  /* -webkit-background-size:cover; 
    -moz-background-size:cover; 
    -o-background-size:cover; 
-   background-size:cover; 
-   position:absolute
+   background-size:cover;*/
+   position:absolute;
+   width:100%;
+   height:100%;
+   z-index:-1;
 }
 </style>
 
-<video autoplay="autoplay" loop> 
-   <source src="/videos/fanfollow-bg-movie.mp4" type="video/mp4"> 
+<video autoplay="autoplay" loop mute="true"> 
+   <source src="/videos/background-video.mp4" type="video/mp4" mute="true"> 
    <source src="videos/fanfollow-bg-movie.webm" type="video/webm"> 
    	<!-- Look at webm for compression, pfeff -->
 </video>
