@@ -27,7 +27,7 @@
       <!-- User description box -->
       <div class="description-box shadow">
         <div class="name-box">
-          <h4>heading to <%=@ride.event.title%>!</h4>
+          <h4><%=@ride.title%> is heading to <%=@ride.event.title%>!</h4>
         </div>
      	  <div class="text-content">
           <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop!</h3></p>
