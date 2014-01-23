@@ -1,20 +1,70 @@
-<%= form_for(@seat, :remote => true) do |f| %>
-  <% if @seat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@seat.errors.count, "error") %> prohibited this seat from being booked:</h2>
-
-      <ul>
-      <% @seat.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<!-- Multiple Radios -->
+<div class="row">
+  <hr>
+  <div class="col-md-offset-5">
+    <p><b><h3>Are you in?</h3></b></p>
+  </div>
+  <hr>
+  <div class="col-md-4 col-md-offset-1">
+    <div class="trip-length">
+      <h4>Trip Length</h4>
+      <div class="controls">
+        <label class="radio" for="trip-Length-0">
+          <input type="radio" name="trip-Length" id="trip-Length-0" value="One Way" checked="checked" required="required">
+          One Way
+        </label>
+        <label class="radio" for="trip-Length-1">
+          <input type="radio" name="trip-Length" id="trip-Length-1" value="Round Trip" required="required">
+          Round Trip
+        </label>
+      </div>
     </div>
-  <% end %>
+  </div>
+  <div class="col-md-4">
+    Ok
+  </div>
+  <div class="col-md-3">...</div>
 
-  <div class="field">
-    <%= f.hidden_field :ride_id, :value => @ride.id %>
+</div>
+
+<div class="col-md-offset-3"  
+  <!-- Button (Double) -->
+  <div class="control-group">
+    <label class="control-label" for="button1id"></label>
+
+    <div class="controls">
+      <button id="book_seat" name="button1id" class="btn btn-success">Book A Seat!</button>
+      <button id="ask_question" name="button2id" class="btn btn-info">Ask Driver A Question</button>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+    <hr>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('#book_seat').click(function(e) {
+    var url = '<%= new_seat_path(ride_id:@ride.id) %>';
+
+
+   
+    e.preventDefault();
+  });
+});
+
+
+    // var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
+    //   autoOpen: false,
+    //   width: 520,
+    //   modal: true,
+    //   open: function() {
+    //     return $(this).load(url + ' #content');
+    //   },
+    //   close: function() {
+    //     $('#dialog-form').remove();
+    //   }
+    // });
+ // var url = '<%= new_seat_path %>'
+
+  // var url =" <%= link_to 'Book A Seat!', new_seat_path, :id => 'create_seat' %>"
+
+</script>
