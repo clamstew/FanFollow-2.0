@@ -69,20 +69,21 @@
 
   //Seat number functions
 
+  var seatClick = function(direction) {
+    var numSeatsCount = parseInt($('#seats-counter').text());
+    numSeatsCount += direction;
+    console.log('click!', numSeatsCount);
+    $('#seats-counter').text(numSeatsCount);
+  };
+
   //Click plus button
   $('#seat-plus').on('click', function() {
-    numSeatsCount = parseInt($('#seats-counter').text());
-    numSeatsCount += 1;
-    console.log(numSeatsCount);
-    $('#seats-counter').text(numSeatsCount);
+    seatClick(1);
   });
 
   //Click minus button
   $('#seat-minus').on('click', function() {
-    numSeatsCount = parseInt($('#seats-counter').text());
-    numSeatsCount -= 1;
-    console.log(numSeatsCount);
-    $('#seats-counter').text(numSeatsCount);
+    seatClick(-1);
   });
 
 
