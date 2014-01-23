@@ -1,29 +1,55 @@
 <%= stylesheet_link_tag 'profile-page' %>
-
   <div class="content-section-a">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-5">
+        <div class="col-md-9">
           <div class="description-box shadow">
             <div class="name-box">
-              <h2>Welcome Back <%= current_user.first_name %>!</h2>
+              <h2>Welcome Back <%= current_user.first_name %>! View Your Upcoming Trips</h2>
             </div>
           </div>
           
           <br>
 
           <%= render partial: 'partials/current_user_bio_box' %>
-          <h2>View Your Upcoming Trips:</h2>
-          <%= render partial: 'partials/current_user_ride_listing' %>
-          <%= render partial: 'partials/current_user_seat_listing' %>
    
           <br>
-                    
-      <h3>Looking to start a new journey?</h3><%= render partial: 'partials/search_box' %>
+
+      <!-- Profile description box -->
+    <div class="col-md-8 ">
+      <!-- User description box -->
+      <div class="description-box shadow">
+        <div class="name-box">
+            <h3><i class="fa fa-road"></i>Looks Like Your Driving:</h3>
+        </div>
+        <div class="text-content">
+          <div class="rides-box">
+            <hr style="margin:8px auto">
+            <ul class="cars">
+              <ul>
+              <% @driving.each do |driving| %>
+                <li>
+                  <h3><%= link_to driving.title, show_ride_path(ride_id: driving.id) %></h3>
+                </li>
+              <% end %>
+             </ul>
+          </div>
+          
+          <br/>
+
+        </div>  
+        
+    
+      
+      
 
 
 
-      </div>  
-    </div>
+
   </div>      
     
+    
+
+
+
+
+     <h3>Looking to start a new journey?</h3><%= render partial: 'partials/search_box' %>
