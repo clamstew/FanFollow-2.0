@@ -51,9 +51,13 @@
       <!-- Button (Double) -->
       <div class="control-group">
         <label class="control-label" for="button1id"></label>
+
         <div class="controls">
-          <button id="button1id" name="button1id" class="btn btn-success">Book A Seat!</button>
-          <button id="button2id" name="button2id" class="btn btn-info">Ask Driver A Question</button>
+          <button id="book_seat" name="button1id" class="btn btn-success">Book A Seat!</button>
+          <button id="ask_question" name="button2id" class="btn btn-info">Ask Driver A Question</button>
+        </div>
+
+        <div>
 			    <h4>You'll be riding with these friendly folks:</h4>
 			    <% @ride.passengers.each do |rider| %>
 					<li>
@@ -93,8 +97,52 @@
       </div>
     </div>
     <!-- End bio-box -->
-
-
-
-
 </div> <!-- end container -->
+
+<script type="text/javascript">
+ // Place in public/javascripts and make a global modal selector instead of #book_seat?
+  $(document).ready(function() {
+  $('#book_seat').click(function(e) {
+    // var url = $(this).attr('href');
+    var url = '<%= new_seat_path %>'
+    var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
+      autoOpen: false,
+      width: 520,
+      modal: true,
+      open: function() {
+        return $(this).load(url + ' #content');
+      },
+      close: function() {
+        $('#dialog-form').remove();
+      }
+    });
+    dialog_form.dialog('open');
+    e.preventDefault();
+  });
+});
+
+ // var url = '<%= new_seat_path %>'
+
+  // var url =" <%= link_to 'Book A Seat!', new_seat_path, :id => 'create_seat' %>"
+
+</script>
+
+<style type = "text/css">
+  #dialog-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.ui-widget {
+  background: white;
+}
+
+.ui-widget-overlay {
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+}
+
+</style>

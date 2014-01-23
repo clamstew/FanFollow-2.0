@@ -3,6 +3,8 @@ Fanfollow::Application.routes.draw do
   resources :dashboard
   # resources :rides
 
+  resources :seats
+
   authenticated :user do
     root :to => "dashboard#show", :as => 'authenticated_root'
   end
