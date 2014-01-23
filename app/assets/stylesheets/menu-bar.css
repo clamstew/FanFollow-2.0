@@ -5,4 +5,29 @@
 
 .navbar-default{
   background-color: #42ade3;
+  border-color:#42ade3;
 }
+
+.navbar-default .navbar-brand {
+  color:#FFFFFF;
+}
+
+.navbar-default .navbar-nav > li > a{
+  color:#FFFFFF;
+  padding-bottom: 20px;
+
+}
+
+.navbar {
+  min-height:62px;
+}
+
+.navbar-brand{
+  font-size: 26px;
+}
+
+.logo-bold{
+  font-size: 22px;
+}
+
+
