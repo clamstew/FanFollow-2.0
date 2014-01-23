@@ -1,29 +1,44 @@
 <!-- Multiple Radios -->
+
+<hr class="no-top-bottom-margin">
 <div class="row">
-  <hr>
   <div class="col-md-offset-5">
     <p><b><h3>Are you in?</h3></b></p>
   </div>
-  <hr>
-  <div class="col-md-4 col-md-offset-1">
+</div>
+
+<div class="row">
+  <div class="col-md-4">
     <div class="trip-length">
       <h4>Trip Length</h4>
-      <div class="controls">
-        <label class="radio" for="trip-Length-0">
-          <input type="radio" name="trip-Length" id="trip-Length-0" value="One Way" checked="checked" required="required">
-          One Way
-        </label>
-        <label class="radio" for="trip-Length-1">
-          <input type="radio" name="trip-Length" id="trip-Length-1" value="Round Trip" required="required">
-          Round Trip
-        </label>
+      <hr class="no-top-margin">
+      <div class="checkboxes">
+        <i class="fa fa-1x fa-check-square-o"> One Way</i>
+        <br/>
+        <i class="fa fa-1x fa-square-o"> Round Trip</i>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    Ok
+
+  <!-- Number of seats -->
+  <div class="col-md-4 noSelect">
+    <div class="seats-selection">
+      <h4> How many seats?</h4>
+      <hr class="no-top-margin">
+ 
+        <h4><div id="num-seats-counter" class="seats-counter center-it">
+        <i id="seat-minus" class="fa fa-1x fa-minus-square"></i>
+        <span id="seats-counter">1</span>
+       <i id="seat-plus" class="fa fa-1x fa-plus-square"></i> </div></h4>
+       
+    </div>
   </div>
-  <div class="col-md-3">...</div>
+  <!-- End number of seats -->
+
+  <div class="col-md-4">
+    <h4>Something else</h4>
+          <hr class="no-top-margin">
+  </div>
 
 </div>
 
@@ -42,14 +57,33 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-  $('#book_seat').click(function(e) {
-    var url = '<%= new_seat_path(ride_id:@ride.id) %>';
+    $('#book_seat').click(function(e) {
+      var url = '<%= new_seat_path(ride_id:@ride.id) %>';
 
 
-   
-    e.preventDefault();
+     
+      e.preventDefault();
+    });
+
   });
-});
+
+  //Seat number functions
+
+  //Click plus button
+  $('#seat-plus').on('click', function() {
+    numSeatsCount = parseInt($('#seats-counter').text());
+    numSeatsCount += 1;
+    console.log(numSeatsCount);
+    $('#seats-counter').text(numSeatsCount);
+  });
+
+  //Click minus button
+  $('#seat-minus').on('click', function() {
+    numSeatsCount = parseInt($('#seats-counter').text());
+    numSeatsCount -= 1;
+    console.log(numSeatsCount);
+    $('#seats-counter').text(numSeatsCount);
+  });
 
 
     // var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
