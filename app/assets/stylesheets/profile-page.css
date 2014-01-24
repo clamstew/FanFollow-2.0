@@ -6,8 +6,31 @@
 		/* Rules below not implemented in browsers yet */
 		-o-user-select: none;
 		user-select: none;
+		/*margin: 0px 1px 0px 1px;*/
+		/*border-left: solid rgba(243, 243, 243, 0.9500) 1px;*/
+		border-radius: 10px;
+		background-color: #ffffff;
 	}
-	
+
+	.cursorOn {
+		cursor: pointer;
+	}
+
+	.subtotal {
+		font-size: 0.9em;
+		color: rgba(137, 137, 137, 0.7500);
+	}
+
+	#subtotal-calculation {
+		font-weight: bold;
+		font-size: 2.2em;
+		color: rgba(130, 130, 130, 1.0000);
+	}
+
+	.bolden {
+		font-weight: bold;
+	}
+
 	.seats-counter {
 		font-size: 2em;
 		color: rgba(84, 179, 84, 1);

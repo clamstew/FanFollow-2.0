@@ -1,91 +1,154 @@
 <!-- Multiple Radios -->
 
-<hr class="no-top-bottom-margin">
+<hr class="no-top-margin">
 <div class="row">
-  <div class="col-md-offset-5">
+  <div class="col-md-4 col-md-offset-4" id="are-you-in">
     <p><b><h3>Are you in?</h3></b></p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <div class="trip-length">
+  <div class="col-md-6 col-md-offset-3">
+    <!-- Button (Double) -->
+    <div class="control-group">
+      <label class="control-label" for="button1id"></label>
+
+      <div class="controls">
+        <button id="book_seat" name="button1id" class="btn btn-success">Book A Seat!</button>
+        <button id="ask_question" name="button2id" class="btn btn-info">Ask Driver A Question</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-3 col-md-offset-1 noSelect">
+    <div class="" id="trip-length">
       <h4>Trip Length</h4>
       <hr class="no-top-margin">
       <div class="checkboxes">
-        <i class="fa fa-1x fa-check-square-o"> One Way</i>
+        <i class="fa fa-1x fa-square-o cursorOn" id="one-way"><span id="one-way-text" class=""> One Way</span></i>
         <br/>
-        <i class="fa fa-1x fa-square-o"> Round Trip</i>
+        <i class="fa fa-1x fa-check-square-o cursorOn" id="round-trip"><span id="round-trip-text" class="bolden"> Round Trip</span></i>
       </div>
     </div>
   </div>
 
   <!-- Number of seats -->
-  <div class="col-md-4 noSelect">
-    <div class="seats-selection">
-      <h4> How many seats?</h4>
+  <div class="col-md-3 noSelect">
+    <div class="" id="seats-selection">
+      <h4>Seats?</h4>
       <hr class="no-top-margin">
- 
         <h4><div id="num-seats-counter" class="seats-counter center-it">
-        <i id="seat-minus" class="fa fa-1x fa-minus-square"></i>
+        <i id="seat-minus" class="fa fa-1x fa-minus-square cursorOn"></i>
         <span id="seats-counter">1</span>
-       <i id="seat-plus" class="fa fa-1x fa-plus-square"></i> </div></h4>
-       
+       <i id="seat-plus" class="fa fa-1x fa-plus-square cursorOn"></i>
+      </div></h4>
     </div>
   </div>
   <!-- End number of seats -->
 
-  <div class="col-md-4">
-    <h4>Something else</h4>
-          <hr class="no-top-margin">
+  <div class="col-md-4 noSelect">
+    <div class="" id="confirm-seat">
+        <h4>Let's do it!</h4>
+        <hr class="no-top-margin">
+        <div class="col-md-6 subtotal" id="subtotal">
+          $ <span id="subtotal-calculation"></span>
+          <br/>Subtotal
+        </div>        
+        <div class="col-md-6">
+          <button id="book_seat" name="button1id" class="btn btn-success cursorOn">Go!</button>
+          
+        </div>
+    </div>   
   </div>
+  <!-- End col-md-12 -->
+
 
 </div>
 
-<div class="col-md-offset-3"  
-  <!-- Button (Double) -->
-  <div class="control-group">
-    <label class="control-label" for="button1id"></label>
-
-    <div class="controls">
-      <button id="book_seat" name="button1id" class="btn btn-success">Book A Seat!</button>
-      <button id="ask_question" name="button2id" class="btn btn-info">Ask Driver A Question</button>
-    </div>
-  </div>
+<div class="col-md-offset-3">
 </div>
     <hr>
 
 <script type="text/javascript">
+
   $(document).ready(function() {
+
+    $('#trip-length').hide();
+    $('#seats-selection').hide();
+    $('#confirm-seat').hide();
+
+    var bookingFlowPosition = 0;
+
     $('#book_seat').click(function(e) {
-      var url = '<%= new_seat_path(ride_id:@ride.id) %>';
-
-
-     
+    bookingFlowPosition = 1;
+    // $('#are-you-in').hide();
+    $('#book_seat').hide();
+    $('#ask_question').hide();
+    $('#trip-length').show();
+    $('#seats-selection').show();
+    $('#confirm-seat').show();
+    var url = '<%= new_seat_path(ride_id:@ride.id) %>';
       e.preventDefault();
     });
 
+    var recalculatePrice = function () {
+      var numSeatsCount = parseInt($('#seats-counter').text());
+      var pricePerSeat = <%= @ride.price_per_seat %>;
+      if ($('#one-way-text').attr('class') == "bolden") {
+        var tripLength = 1;
+      } else {
+        var tripLength = 2;
+      };
+      var newPrice = numSeatsCount * tripLength * pricePerSeat;
+      $('#subtotal-calculation').text(newPrice);
+    }
+    recalculatePrice();
+
+    //Seat number functions
+    var seatClick = function(direction) {
+      var max_seats = <%=@ride.max_seats%>;
+      var numSeatsCount = parseInt($('#seats-counter').text());
+      numSeatsCount += direction; //execute the direction before the validity check
+      if(numSeatsCount >= 1 && numSeatsCount <= max_seats) { //Ensure we don't go to zero or above the available seats
+        // console.log('validclick!', numSeatsCount);
+        $('#seats-counter').text(numSeatsCount);
+        recalculatePrice();
+      };
+    };
+
+    //Click plus button
+    $('#seat-plus').on('click', function() {
+      seatClick(1);
+    });
+
+    //Click minus button
+    $('#seat-minus').on('click', function() {
+      seatClick(-1);
+    });
+    //End seat number functions
+
+    //Trip length functions
+    var switchTripLength = function () {
+      $('i#one-way').toggleClass("fa-check-square-o").toggleClass("fa-square-o");
+      $('#one-way-text').toggleClass("bolden").toggleClass("");
+      $('i#round-trip').toggleClass("fa-check-square-o").toggleClass("fa-square-o");
+      $('#round-trip-text').toggleClass("").toggleClass("bolden");
+      recalculatePrice();
+    };
+
+    $('i#one-way').on('click', function() {
+      switchTripLength();
+    });
+
+    $('i#round-trip').on('click', function() {
+      switchTripLength(); 
+    });
+    //End trip length functions
+   
   });
-
-  //Seat number functions
-
-  var seatClick = function(direction) {
-    var numSeatsCount = parseInt($('#seats-counter').text());
-    numSeatsCount += direction;
-    console.log('click!', numSeatsCount);
-    $('#seats-counter').text(numSeatsCount);
-  };
-
-  //Click plus button
-  $('#seat-plus').on('click', function() {
-    seatClick(1);
-  });
-
-  //Click minus button
-  $('#seat-minus').on('click', function() {
-    seatClick(-1);
-  });
-
 
     // var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
     //   autoOpen: false,

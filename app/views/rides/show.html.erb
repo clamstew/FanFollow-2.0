@@ -47,7 +47,9 @@
           <h4><%= @ride.title %> is heading to <%=@ride.event.title%>!</h4>
         </div>
      	  <div class="text-content">
-          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop!</h3></p>
+          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>
+          <div class="ride-description">
+          <hr class="no-top-bottom-margin">We'll leave on Friday. Also, I don't have a license.</div>
       
 		      <%= render :partial => 'seats/form' %>
           
@@ -73,30 +75,4 @@
   
 </div> <!-- end container -->
 
-<script type="text/javascript">
- // Place in public/javascripts and make a global modal selector instead of #book_seat?
-  $(document).ready(function() {
-  $('#book_seat').click(function(e) {
-    // var url = $(this).attr('href');
-    var url = '<%= new_seat_path(ride_id:@ride.id) %>'
-    var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
-      autoOpen: false,
-      width: 520,
-      modal: true,
-      open: function() {
-        return $(this).load(url + ' #content');
-      },
-      close: function() {
-        $('#dialog-form').remove();
-      }
-    });
-    dialog_form.dialog('open');
-    e.preventDefault();
-  });
-});
 
- // var url = '<%= new_seat_path %>'
-
-  // var url =" <%= link_to 'Book A Seat!', new_seat_path, :id => 'create_seat' %>"
-
-</script>
