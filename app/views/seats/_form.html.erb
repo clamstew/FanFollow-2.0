@@ -58,8 +58,7 @@
           <br/>Subtotal
         </div>        
         <div class="col-md-6">
-          <button id="book_seat" name="button1id" class="btn btn-success cursorOn">Go!</button>
-          
+          <button id="process-seats" name="process-seats-button" class="btn btn-success cursorOn">Go!</button>
         </div>
     </div>   
   </div>
@@ -83,25 +82,34 @@
     var bookingFlowPosition = 0;
 
     $('#book_seat').click(function(e) {
-    bookingFlowPosition = 1;
-    // $('#are-you-in').hide();
-    $('#book_seat').hide();
-    $('#ask_question').hide();
-    $('#trip-length').show();
-    $('#seats-selection').show();
-    $('#confirm-seat').show();
-    var url = '<%= new_seat_path(ride_id:@ride.id) %>';
-      e.preventDefault();
+      bookingFlowPosition = 1;
+      // $('#are-you-in').hide();
+      $('#book_seat').hide();
+      $('#ask_question').hide();
+      $('#trip-length').show();
+      $('#seats-selection').show();
+      $('#confirm-seat').show();
+      var url = '<%= new_seat_path(ride_id:@ride.id) %>';
+        e.preventDefault();
     });
+
+    var determineTripLength = function() {
+      if ($('#one-way-text').attr('class') == "bolden") {
+        return 1;
+      } else {
+        return 2;
+      };
+    };
+
+    var determineNumberSeats = function() {
+      return parseInt($('#seats-counter').text());
+    };
+    
 
     var recalculatePrice = function () {
       var numSeatsCount = parseInt($('#seats-counter').text());
       var pricePerSeat = <%= @ride.price_per_seat %>;
-      if ($('#one-way-text').attr('class') == "bolden") {
-        var tripLength = 1;
-      } else {
-        var tripLength = 2;
-      };
+      var tripLength = determineTripLength();
       var newPrice = numSeatsCount * tripLength * pricePerSeat;
       $('#subtotal-calculation').text(newPrice);
     }
@@ -110,7 +118,7 @@
     //Seat number functions
     var seatClick = function(direction) {
       var max_seats = <%=@ride.max_seats%>;
-      var numSeatsCount = parseInt($('#seats-counter').text());
+      var numSeatsCount = determineNumberSeats();
       numSeatsCount += direction; //execute the direction before the validity check
       if(numSeatsCount >= 1 && numSeatsCount <= max_seats) { //Ensure we don't go to zero or above the available seats
         // console.log('validclick!', numSeatsCount);
@@ -147,6 +155,15 @@
       switchTripLength(); 
     });
     //End trip length functions
+
+    //Process seat booking functions
+    $('#process-seats').on('click', function() {
+      var tripLength = determineTripLength();
+      var numSeatsCount = determineNumberSeats();
+      var ride_id = <%= @ride.id %>
+      console.log(tripLength, numSeatsCount, ride_id);
+      
+    });
    
   });
 
