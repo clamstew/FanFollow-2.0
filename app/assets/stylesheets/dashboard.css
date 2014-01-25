@@ -1,0 +1,21 @@
+.col-md-5{
+  padding-top:10px;
+}
+
+.name-box {
+  background-color:#42ade3;
+/*  color:#2f2f2f;
+*/}
+
+h2{
+  font-size:30px;
+  color:2f2f2f;
+}
+
+.bio-box {
+  background-color:#f99525;
+}
+
+.bio-box img {
+  border-radius:80px;
+}
