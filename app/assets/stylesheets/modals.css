@@ -1,0 +1,18 @@
+#dialog-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: rgba(92, 184, 92, 0.0200);
+
+}
+
+.ui-widget {
+  background: white;
+}
+
+.ui-widget-overlay {
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+}

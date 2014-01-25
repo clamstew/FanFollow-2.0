@@ -2,11 +2,11 @@
 	<br/>
 <div class="container">
   <div class="row">
-    <div class="col-md-1 pull-left">
-      <!-- Spacing div - there must be a better way! -->
-    </div>
-    <!-- Start bio box -->
-  	<div class="col-md-3">
+
+    <!-- Start left column -->
+    <div class="col-md-3 col-md-offset-1">
+
+      <!-- Start ride info section -->
   		<div class="bio-box shadow">
         <a class="" href="#">
             <img class="img-responsive dp center" src="<%= @ride.image %>" />
@@ -15,68 +15,12 @@
         <h5 class="location">Leaving from <%= @ride.origin %>!<br/><small></small></h5>
         
         <hr style="margin:8px auto">
-        <div class="interests center">
-         
-        </div>
       </div>
-    </div>
-    <!-- End bio-box -->
+      <!-- End ride info section -->
 
-    <!-- Profile description box -->
-  	<div class="col-md-7 ">
-      <!-- User description box -->
-      <div class="description-box shadow">
-        <div class="name-box">
-          <h4>heading to <%=@ride.event.title%>!</h4>
-        </div>
-     	  <div class="text-content">
-          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop!</h3></p>
-          <br/>
-          		<!-- Multiple Radios -->
-      <div class="control-group">
-        <label class="control-label" for="Trip-Length">Trip Length</label>
-        <div class="controls">
-          <label class="radio" for="Trip-Length-0">
-            <input type="radio" name="Trip-Length" id="Trip-Length-0" value="One Way" checked="checked" required="required">
-            One Way
-          </label>
-          <label class="radio" for="Trip-Length-1">
-            <input type="radio" name="Trip-Length" id="Trip-Length-1" value="Round Trip" required="required">
-            Round Trip
-          </label>
-        </div>
-      </div>
-
-			
-      <!-- Button (Double) -->
-      <div class="control-group">
-        <label class="control-label" for="button1id"></label>
-        <div class="controls">
-          <button id="button1id" name="button1id" class="btn btn-success">Book A Seat!</button>
-          <button id="button2id" name="button2id" class="btn btn-info">Ask Driver A Question</button>
-			    <h4>You'll be riding with these friendly folks:</h4>
-			    <% @ride.passengers.each do |rider| %>
-					<li>
-            <%= link_to rider.first_name, show_user_path(user_id: rider.id) %>
-					<% end %> 
-        </div>
-      </div>
-  		  </div>
-      </div><br/>
-
-      <div class="col-md-1 pull-right">
-      <!-- Spacing div - there must be a better way! -->
-      </div>
-    </div>
-    <!-- End profile description box -->
-  </div> <!-- end row -->
-  <!-- Start bio box -->
-  <br/>
-  <div class="col-md-1 pull-left">
-      <!-- Spacing div - there must be a better way! -->
-    </div>
-  	<div class="col-md-3">
-  		<div class="bio-box shadow">
+<hr>
+      <!-- Driver bio section -->
+      <div class="bio-box shadow">
         <a class="" href="/users/show/<%=@driver.id%>">
             <img class="img-responsive dp center" src="<%= @driver.image %>" />
         </a>
@@ -91,10 +35,44 @@
           <span class="label label-default">Grateful Dead</span>
         </div>
       </div>
+      <!-- End driver bio section -->
+
+    </div> 
+    <!-- End left column-->
+
+  	<div class="col-md-7">
+      <!-- Ride description box -->
+      <div class="description-box shadow">
+        <div class="name-box">
+          <h4><%= @ride.title %> is heading to <%=@ride.event.title%>!</h4>
+        </div>
+     	  <div class="text-content">
+          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>
+          <div class="ride-description">
+          <hr class="no-top-bottom-margin">We'll leave on Friday. Also, I don't have a license.</div>
+      
+		      <%= render :partial => 'seats/form' %>
+          
+          <div>
+  			    <h4>You'll be riding with these friendly folks:</h4>
+  			    <% @ride.passengers.each do |rider| %>
+                <h5><%= link_to rider.first_name, show_user_path(user_id: rider.id) %></h5>
+  					<% end %> 
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- End bio-box -->
+
+    <!-- Spacing div ;( -->
+    <div class="col-md-1"></div> 
+
+  </div> <!-- end row -->
 
 
-
-
+ 
+  <!-- Start bio box -->
+  <br/>
+  
 </div> <!-- end container -->
+
+
