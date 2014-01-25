@@ -7,9 +7,9 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <!-- Button (Double) -->
+    <!-- Button (Double)
     <div class="control-group">
       <label class="control-label" for="button1id"></label>
 
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="row">
 
@@ -58,7 +58,9 @@
           <br/>Subtotal
         </div>        
         <div class="col-md-6">
+           <!-- Add cost handling etc. etc. -->
           <button id="process-seats" name="process-seats-button" class="btn btn-success cursorOn">Go!</button>
+          <%= csrf_meta_tag %>
         </div>
     </div>   
   </div>
@@ -75,23 +77,24 @@
 
   $(document).ready(function() {
 
-    $('#trip-length').hide();
-    $('#seats-selection').hide();
-    $('#confirm-seat').hide();
 
-    var bookingFlowPosition = 0;
+    // $('#trip-length').hide();
+    // $('#seats-selection').hide();
+    // $('#confirm-seat').hide();
 
-    $('#book_seat').click(function(e) {
-      bookingFlowPosition = 1;
-      // $('#are-you-in').hide();
-      $('#book_seat').hide();
-      $('#ask_question').hide();
-      $('#trip-length').show();
-      $('#seats-selection').show();
-      $('#confirm-seat').show();
-      var url = '<%= new_seat_path(ride_id:@ride.id) %>';
-        e.preventDefault();
-    });
+    // var bookingFlowPosition = 0;
+
+    // $('#book_seat').click(function(e) {
+    //   bookingFlowPosition = 1;
+    //   // $('#are-you-in').hide();
+    //   $('#book_seat').hide();
+    //   $('#ask_question').hide();
+    //   $('#trip-length').show();
+    //   $('#seats-selection').show();
+    //   $('#confirm-seat').show();
+    
+    //     e.preventDefault();
+    // });
 
     var determineTripLength = function() {
       if ($('#one-way-text').attr('class') == "bolden") {
@@ -105,7 +108,6 @@
       return parseInt($('#seats-counter').text());
     };
     
-
     var recalculatePrice = function () {
       var numSeatsCount = parseInt($('#seats-counter').text());
       var pricePerSeat = <%= @ride.price_per_seat %>;
@@ -157,29 +159,44 @@
     //End trip length functions
 
     //Process seat booking functions
+
     $('#process-seats').on('click', function() {
       var tripLength = determineTripLength();
       var numSeatsCount = determineNumberSeats();
       var ride_id = <%= @ride.id %>
+    
+
       console.log(tripLength, numSeatsCount, ride_id);
-      
-    });
+
    
+
+      var url = '<%= create_seat_path %>';
+
+      post_params = {
+        "seat": {
+          "ride_id": '<%= @ride.id %>',
+          // num seats,
+          // price etc,
+        }
+      }
+
+      $.ajax({ url: url,
+        type: 'POST',
+        data: post_params,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        success: function(response) {
+          // $('#someDiv').html(response);
+          alert('yes');
+        }
+      });
+
+
+
+
+    });
+ 
   });
 
-    // var dialog_form = $('<div id="dialog-form">Loading form...</div>').dialog({
-    //   autoOpen: false,
-    //   width: 520,
-    //   modal: true,
-    //   open: function() {
-    //     return $(this).load(url + ' #content');
-    //   },
-    //   close: function() {
-    //     $('#dialog-form').remove();
-    //   }
-    // });
- // var url = '<%= new_seat_path %>'
-
-  // var url =" <%= link_to 'Book A Seat!', new_seat_path, :id => 'create_seat' %>"
+  
 
 </script>

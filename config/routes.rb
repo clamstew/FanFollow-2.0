@@ -1,10 +1,7 @@
 Fanfollow::Application.routes.draw do
 
   resources :dashboard
-  # resources :rides
-
-  resources :seats
-
+  
   authenticated :user do
     root :to => "dashboard#show", :as => 'authenticated_root'
   end
@@ -16,6 +13,9 @@ Fanfollow::Application.routes.draw do
   get '/rides/show/:ride_id' => 'rides#show', :as => 'show_ride'
   get '/rides/new' => 'rides#new', :as => 'new_ride'
   post '/rides' => 'rides#create'
+
+  # resources :rides
+  post '/seats' => 'seats#create', :as => 'create_seat'
 
   devise_for :users
   
