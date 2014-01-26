@@ -62,6 +62,20 @@
 
           <button id="process-seats" name="process-seats-button" class="btn btn-success cursorOn">Go!</button>
 
+          
+            <form action="" method="POST">
+              <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_QutWa243s05JAn8caYXxG91I"
+                data-amount="2000"
+                data-name="Demo Site"
+                data-description="2 widgets ($20.00)"
+                data-image="/128x128.png">
+              </script>
+          </form>
+
+
+
           <%= csrf_meta_tag %>
         </div>
     </div>   
