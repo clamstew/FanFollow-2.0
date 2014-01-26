@@ -18,7 +18,8 @@ namespace :populate do
 
 		  puts "Grabbed #{result["events"].length} events by #{grab_uri}"
 		  i = 0
-		  result["events"].each do |event|
+		  # each_with_index do!!!
+		  result["events"].each do |event| 
 		  	title = event["title"]
 		  	title = title.truncate(255)
 		  	city = event["venue"]["city"]
