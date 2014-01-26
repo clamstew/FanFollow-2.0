@@ -17,24 +17,29 @@ class SeatsController < ApplicationController
   	# Add authentication here
   	@user = current_user
     @ride = Ride.find(seat_params[:ride_id])
-    requested_seats = seat_params[:num_requested_seats]
-
-    # Moved @seat up here to allow @seat.errors.any? in create.js.erb to function
-    @seat = @user.seats.new(:ride_id => seat_params[:ride_id])
+    requested_seats = seat_params[:num_requested_seats].to_i
 
     success = {:message => "Successfully booked your ride!"}
     not_enough_seats = {:message => "Not enough seats available!"}
     save_error = {:message => "Serverside save error!"}
 
-    if requested_seats.to_i > (@ride.max_seats - @ride.seats.count)
+    if requested_seats > (@ride.max_seats - @ride.seats.count)
       puts 'too many seats requested'
       render :json => not_enough_seats, :status => :error
       # Return an error
     else
-      if @seat.save
-        render :json => success, :status => :ok
-      else 
-        render :json => save_error, :status => :error
+      count = 0
+      requested_seats.times do
+        @seat = @user.seats.new(:ride_id => seat_params[:ride_id])
+        if @seat.save
+          # @remaining_seats = @ride.max_seats - @ride.seats.count
+          count += 1
+          if count == requested_seats
+            render :json => success, :status => :ok
+          end
+        else 
+          render :json => save_error, :status => :error
+        end
       end
       # respond_to do |format|
       #   if @seat.save 

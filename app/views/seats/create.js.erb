@@ -1,10 +1,1 @@
-<%- if @seat.errors.any? %>
-	alert('error!');
-  console.log('Error');
-  // $('#dialog-form').html('<%= escape_javascript(render('form')) %>');
-<%- else %>
-  console.log('Created');
-  alert('successss!');
-  // $('#dialog-form').dialog('close');
-  // $('#dialog-form').remove();
-<%- end %>
+$('#free_seats_count').html(<%= @remaining_seats %>);

@@ -193,6 +193,9 @@
           // alert('yes');
           alert('Woohoo! ' + response.message);
           console.log(response);
+          // Not needed because we'll redirect somewhere on success...
+          $('#free_seats_count').html(<%= @remaining_seats %>);
+
         },
         error: function(response) {
           // alert('fail');
