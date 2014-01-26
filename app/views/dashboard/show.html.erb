@@ -4,31 +4,46 @@
 
 
 <div class="container dashboard-wrap">
+  
+
+  <div class = "col-md-3">
+  <%= render partial: 'partials/current_user_bio_box' %>
+  </div>  
+
   <div class="col-md-5">
     <div class="description-box shadow">
       <div class="name-box">
-        <h2>Welcome Back ,<%= current_user.first_name %>!</h2>      
+        <h2>Welcome Back,<%= current_user.first_name %>!</h2>      
       </div>  
     </div>  
   </div>
-
-  <div class = "col-md-4">
-  <h4>Looking to start a new journey?</h4><%= render partial: 'partials/search_box' %>
-  </div>  
   
 
   <div class="col-md-9">
     <br>
-    <%= render partial: 'partials/current_user_bio_box' %>
-    <br>  
+    <%= render partial: 'partials/current_user_driver_listing' %>
+  </div> 
+  
+  <br>
+  <br>
+  <div class ="col-md-9"
+  <h4>Looking to start a new journey?</h4><%= render partial: 'partials/search_box' %>
   </div>
 
+    <br>  
+  
 
 
 
 
 
-</div>    
+
+</div>  
+
+<br>
+<br>
+<br>
+<br>  
 
 
     

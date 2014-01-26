@@ -2,6 +2,11 @@
   padding-top:10px;
 }
 
+.col-md-3{
+  padding-top:10px;
+  text-align: center;
+}
+
 .name-box {
   background-color:#42ade3;
 /*  color:#2f2f2f;
@@ -10,12 +15,26 @@
 h2{
   font-size:30px;
   color:2f2f2f;
+  padding-left: 4%;
 }
 
-.bio-box {
+/*.bio-box {
   background-color:#f99525;
-}
+}*/
 
 .bio-box img {
   border-radius:80px;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Serif", "serif", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+
+ul a {
+  color:#2f2f2f;
+}
+
+footer ul a {
+  color:#FFFFFF;
 }
