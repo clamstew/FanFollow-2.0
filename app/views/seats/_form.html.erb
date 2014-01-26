@@ -109,7 +109,7 @@
     };
     
     var recalculatePrice = function () {
-      var numSeatsCount = parseInt($('#seats-counter').text());
+      var numSeatsCount = determineNumberSeats();
       var pricePerSeat = <%= @ride.price_per_seat %>;
       var tripLength = determineTripLength();
       var newPrice = numSeatsCount * tripLength * pricePerSeat;
@@ -175,6 +175,7 @@
       post_params = {
         "seat": {
           "ride_id": '<%= @ride.id %>',
+          "num_requested_seats": numSeatsCount,
           // num seats,
           // price etc,
         }
@@ -186,7 +187,14 @@
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         success: function(response) {
           // $('#someDiv').html(response);
-          alert('yes');
+          // alert('yes');
+          alert('Woohoo! ' + response.message);
+          console.log(response);
+        },
+        error: function(response) {
+          // alert('fail');
+          alert('Oh no! ' + response.responseJSON.message);
+          // console.log(response);
         }
       });
 
