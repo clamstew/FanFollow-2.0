@@ -47,7 +47,7 @@
           <h4><%= @ride.title %> is heading to <%=@ride.event.title%>!</h4>
         </div>
      	  <div class="text-content">
-          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%=@ride.max_seats%></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>
+          <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><%= @free_seats %></b> free seats and they cost <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>
           <div class="ride-description">
           <hr class="no-top-bottom-margin">We'll leave on Friday. Also, I don't have a license.</div>
       

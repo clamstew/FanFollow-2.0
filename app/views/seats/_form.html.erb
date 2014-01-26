@@ -21,7 +21,7 @@
   </div>
 </div> -->
 
-<div class="row">
+<div class="row" id='booking-area'>
 
   <div class="col-md-3 col-md-offset-1 noSelect">
     <div class="" id="trip-length">
@@ -76,6 +76,9 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
+    if(<%= @free_seats %> <= 0) {
+      $('#booking-area').html("<center><em><h3>You're not tripping with these folks - there's no seats left! </h3></em></center>");
+    }
 
 
     // $('#trip-length').hide();
