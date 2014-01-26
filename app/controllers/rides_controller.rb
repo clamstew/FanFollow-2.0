@@ -3,6 +3,7 @@ class RidesController < ApplicationController
   def show
   	@ride = Ride.find(params[:ride_id])
   	@driver = @ride.driver
+    @free_seats = @ride.max_seats - @ride.seats.count
     # May need to add a migration for a ride's state of origin, in case of identical city names?
   end
   
