@@ -8,6 +8,7 @@ class RidesController < ApplicationController
   end
   
   def new
+    @user = current_user
     @event = Event.find(params[:event_id])
     @ride = @event.rides.new(user_id: current_user)
   end
