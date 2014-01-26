@@ -2,3 +2,7 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: "PT Serif", "serif", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
+
+.minimum-height {
+  min-height: 800px;
+}

@@ -38,3 +38,20 @@ ul a {
 footer ul a {
   color:#FFFFFF;
 }
+
+.full-background {
+  background-image: url("/assets/page_background.jpg");
+        background-size: cover;
+        text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -12,10 +12,13 @@
 </head>
 <body>
 <%= render partial: 'partials/menu_bar' %>
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<%= yield %>
+<div class="minimum-height">
+  <%= yield %>
+</div>
 
 <%= render partial: 'partials/footer' %>
 
