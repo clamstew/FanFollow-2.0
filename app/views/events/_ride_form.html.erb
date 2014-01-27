@@ -43,7 +43,7 @@
 <%= csrf_meta_tag %>
 
       <% else %>
-        Please login!
+        <h4><a href="/users/sign_in" style="color:grey">Please login!</a></h4>
       <% end %>
 
   </div>
@@ -70,6 +70,8 @@
     var departure_time_local;
     var name;
     var image;
+
+
 
 
     //Various prompts
@@ -207,11 +209,19 @@
     //End trip length functions
 
     //Process seat booking functions
+    var user_id;
+     <% if current_user != nil %>
+       user_id = <%= current_user.id %>
+     <%end%>
+     console.log(user_id);
+
 
     var createRide = function() {
       
       var url = '<%= create_ride_path %>';
 
+
+  
       post_params = {
         "ride": {
           "origin": origin,
@@ -220,7 +230,8 @@
           "price_per_seat": price_per_seat,
           "departure_time_local": departure_time_local,
           "title": name,
-          "user_id": <%= current_user.id %>,
+          "user_id": user_id,
+          "image": "http://www.blogcdn.com/www.gadling.com/media/2012/03/road-trips-581.jpg",
           // num seats,
           // price etc,
         }
