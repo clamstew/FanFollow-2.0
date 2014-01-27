@@ -19,4 +19,6 @@ Fanfollow::Application.routes.draw do
   
   root :to =>'home#landing_page'
 
+  get '/suggestions/event_suggestions/:q' => 'suggestions#event_suggestions'
+
 end
