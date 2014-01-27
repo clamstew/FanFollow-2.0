@@ -9,6 +9,8 @@ gem 'rails', '4.0.2'
 gem 'pg'
 gem 'devise'
 
+gem 'textacular', '~> 3.0'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
