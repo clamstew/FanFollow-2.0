@@ -7,7 +7,7 @@
     <div class="col-md-3 col-md-offset-1">
 
       <!-- Start ride info section -->
-  		<div class="bio-box shadow">
+  		
         <a class="" href="#">
             <img class="img-responsive dp center" src="<%= @ride.image %>" />
         </a>
@@ -15,26 +15,19 @@
         <h5 class="location">Leaving from <%= @ride.origin %>!<br/><small></small></h5>
         
         <hr style="margin:8px auto">
-      </div>
+      
       <!-- End ride info section -->
 
 <hr>
       <!-- Driver bio section -->
-      <div class="bio-box shadow">
+    
         <a class="" href="/users/show/<%=@driver.id%>">
             <img class="img-responsive dp center" src="<%= @driver.image %>" />
         </a>
-        <h3 class="name">I'm <%= @driver.first_name %>, get in my van!</h3>
+        <h3 class="name">Hi!,I'm <%= @driver.first_name %>,<br>Need a lift?</h3>
         <h5 class="location"><%= @driver.city %>, <%= @driver.state %>, <%= @driver.country %><br/><small><%=@driver.role%></small></h5>
         
-        <hr style="margin:8px auto">
-        <div class="interests center">
-          <span class="label label-default">Star Wars</span>
-          <span class="label label-default">Anime</span>
-          <span class="label label-info">Phish</span>
-          <span class="label label-default">Grateful Dead</span>
-        </div>
-      </div>
+          
       <!-- End driver bio section -->
 
     </div> 

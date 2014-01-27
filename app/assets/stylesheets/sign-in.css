@@ -1,7 +1,11 @@
 .full-background {
   background-image: url("/assets/signin.jpg");
-        background-size: cover;
+        background-size: cover, no-repeat ;
+        background-size:100%;
         text-align: center;
+        height: 1000px;
+  
+  background-repeat:no-repeat;
 }
 
 
