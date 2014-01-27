@@ -104,16 +104,48 @@
 					function onSelected($e, datum) {
 						console.log("autocomplete match");
 						console.log(datum);
+						console.log('matched event with id', datum.id);
 						var hfield = document.getElementById('hfield');
-						console.log(datum.id);
-						hfield.value = datum.id;
-					}
+						// hfield.value = datum.id;
+						submitSearch(datum.id);
+					};
 					function onOpened($e) {
-						console.log('opened');
-					}
+						console.log('Focussed on search box');
+					};
 
-					$(document).on('ready', function() {
-						$('#typeahead').focus();
-					});
+				//Focus on the search box
+				$(document).on('ready', function() {
+					$('#typeahead').focus();
+				});
+
+		 		//Handle a form submission through jquery!
+        var submitSearch = function(id_or_query) {
+	        // console.log('Debug: detected a suggestion selection!');
+	        var submit_path = "/";
+	        if (typeof id_or_query === 'number') {
+	                //Suggestion accepted and submitted! - id_or_query is an event id
+	                submit_path = '/events/show/' + id_or_query;
+	        } else {
+	                //Query - didn't match to an id
+	                submit_path = '/events/show_all/' + id_or_query;
+	        }
+	        //Alrighty, let's go!
+	        // alert('Debug: Submit_path:' + submit_path);
+	        window.location.href=(submit_path); //Load the new page
+        };
+
+
+        
+    //     $('#typeahead').keypress(function(e) {
+	   //      var tt = $('.tt-suggestion');
+	   //      console.log(tt.length);
+	   //      //Ensure we don't submit a query if there's suggestions. Poor fix for now.
+				//   if(e.which == 13 && tt.length < 1) {
+				//   	var query = $('#typeahead').val();
+				//     submitSearch(query);
+				// 	}
+				// });
+
+
 			</script>
 	
