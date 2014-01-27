@@ -17,9 +17,8 @@ namespace :populate do
 		  result = JSON.parse(response.body)
 
 		  puts "Grabbed #{result["events"].length} events by #{grab_uri}"
-		  i = 0
-		  # each_with_index do!!!
-		  result["events"].each do |event| 
+
+		  result["events"].each_with_index { |event, index|
 		  	title = event["title"]
 		  	title = title.truncate(255)
 		  	city = event["venue"]["city"]
@@ -29,11 +28,11 @@ namespace :populate do
 		  	url = url.truncate(255)
 		  	start_datetime_local = event["datetime_local"]
 		  	Event.where(title: title, city: city, state: state, country: country, url: url, start_datetime_local: start_datetime_local, end_datetime_local: "2015-06-15 00:00:00 UTC").first_or_create
-		 		i += 1
-		 		if i%100 == 0 
-		 			puts "Processed #{i} events"
+		 		if index%100 == 0 
+		 			puts "Processed #{index} events"
 		 		end
-		  end
+		  }
+
 		else
 		  puts "ERROR!!!"
 		end
