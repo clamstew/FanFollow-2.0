@@ -20,5 +20,8 @@ Fanfollow::Application.routes.draw do
   devise_for :users
   
   root :to =>'home#landing_page'
+  
+
+  get '/suggestions/event_suggestions/:q' => 'suggestions#event_suggestions'
 
 end

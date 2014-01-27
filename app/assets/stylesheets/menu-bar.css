@@ -4,9 +4,10 @@
 }
 
 .navbar-default{
-  background-color: #42ade3;
-  border-color:#42ade3;
+  background-color: rgba(90, 172, 227, 0.9000);
+  border-color: rgba(90, 172, 227, 1.0000);
 }
+
 
 .navbar-default .navbar-brand {
   color:#FFFFFF;
