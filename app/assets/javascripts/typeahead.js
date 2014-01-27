@@ -690,11 +690,12 @@
             suggestionsList: '<span class="tt-suggestions"></span>'
         }, css = {
             suggestionsList: {
+                border: "black",
                 display: "block"
             },
             suggestion: {
                 whiteSpace: "nowrap",
-                cursor: "pointer"
+                cursor: "pointer",
             },
             suggestionChild: {
                 whiteSpace: "normal"

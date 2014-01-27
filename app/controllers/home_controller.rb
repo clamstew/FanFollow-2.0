@@ -9,5 +9,4 @@ class HomeController < ApplicationController
     render :layout => 'application'
   end
 
-
 end
