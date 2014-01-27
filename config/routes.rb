@@ -12,7 +12,7 @@ Fanfollow::Application.routes.draw do
   
   get '/rides/show/:ride_id' => 'rides#show', :as => 'show_ride'
   get '/rides/new' => 'rides#new', :as => 'new_ride'
-  post '/rides' => 'rides#create'
+  post '/rides' => 'rides#create', :as => 'create_ride'
 
   # resources :rides
   post '/seats' => 'seats#create', :as => 'create_seat'

@@ -1,0 +1,253 @@
+<%= stylesheet_link_tag 'booking-forms' %>
+<hr>
+<div class="row" id='ride-offer-area'>
+
+  <div class="col-md-11 noSelect">
+    <p><b><h3>Driving to <%=@event.title%>?</h3></b></p><br/>
+      <% if current_user != nil %>
+        
+        
+        <div id="ride-offer-prompt"><h4>Where's your ride leaving from?</h4></div>
+       
+        <div id="ride_flow_1" class="input-group">
+          <input type="text" class="form-control" id="origin" placeholder="I'm leaving from..."  autocomplete="off" />  
+          <span class="input-group-addon"><i class="fa fa-1x fa-forward"></i></span>
+        </div>
+
+        <div id="ride_flow_2">
+      
+          <h4><div id="num-seats-counter" class="seats-counter center-it">
+            <i id="seat-minus" class="fa fa-1x fa-minus-square cursorOn"></i>
+            <span id="seats-counter">1</span>
+            <i id="seat-plus" class="fa fa-1x fa-plus-square cursorOn"></i>
+             <i class="fa fa-2x fa-thumbs-o-up" id="num-seats-thumb"></i>
+          </div></h4>
+
+         (Preferably with seatbelts.)
+        </div>
+
+        <div id="ride_flow_3" class="input-group">
+            <input type="text" class="form-control" id="price_per_seat" placeholder="Don't blow it all at once."  autocomplete="off" />
+             <span class="input-group-addon"><i class="fa fa-1x fa-forward"></i></span>
+        </div>
+
+        <div id="ride_flow_4" class="input-group"> 
+          <input type="datetime-local" class="form-control" id="departure_time_local" placeholder="Chronic gem?"  autocomplete="off" />
+          <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="departure_button"></i></span>
+        </div>
+
+        <div id="ride_flow_5" class="input-group"> 
+          <input type="text" class="form-control" id="name" placeholder="e.g. The Rickshaw Redemption"  autocomplete="off" />
+           <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="departure_button"></i></span>
+        </div>
+<%= csrf_meta_tag %>
+
+      <% else %>
+        Please login!
+      <% end %>
+
+  </div>
+
+
+
+  
+  <!-- End col-md-12 -->
+
+
+</div>
+
+<hr>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    //Variables to be filled
+    var origin;
+    var max_seats;
+    var price_per_seat;
+    var departure_time_local;
+    var name;
+    var image;
+
+
+    //Various prompts
+    var prompt_1 = "<h4>Where's your ride leaving from?</h4>";
+    var prompt_2 = "<h4>How many free seats do you have?</h4>";
+    var prompt_3 = "<h4>How much should we charge per seat?</h4>";
+    var prompt_4 = "<h4>When are you leaving?</h4>";
+    var prompt_5 = "<h4>Give your ride a name!</h4>";
+    var prompt_6 = "<h4>Alright, let's do it!</h4>";
+    var renderPrompt = function() {
+      var prompt_space = $('#ride-offer-prompt');
+      var i = ride_flow;
+      if (ride_flow == 1) {
+        prompt_space.html(prompt_1);
+      } else if (ride_flow == 2) {
+        prompt_space.html(prompt_2);
+      } else if (ride_flow == 3) {
+        prompt_space.html(prompt_3);
+      } else if (ride_flow == 4) {
+        prompt_space.html(prompt_4);
+      } else if (ride_flow == 5) {
+        prompt_space.html(prompt_5);
+      } else if (ride_flow == 6) {
+        prompt_space.html(prompt_6);
+      } else if (ride_flow == 7) {
+        prompt_space.html(prompt_7);
+      };
+      $('#ride_flow_'+i).show();
+    };
+
+    //Handle the ride offer flow
+    var ride_flow = 0;
+
+    for(var i=1; i<=6; i++) {
+      $("#ride_flow_"+i).hide();
+      ride_flow = 1;
+      //alert('ok');
+    }
+    renderPrompt();
+
+    //Handle inputs
+    //Need to add fast-forward button on click
+    //Origin
+
+    var nextFlow = function() {
+      $('#ride_flow_'+ride_flow).hide();
+        ride_flow +=1;
+        renderPrompt();
+    };
+
+    $('#origin').keypress(function(e) {
+      if(e.which == 13) {
+        origin = $('#origin').val();
+        console.log(origin);
+        nextFlow();
+      // enter pressed
+      };
+    });
+
+    //Num-seats
+    $('#num-seats-thumb').on('click', function() {
+      max_seats = parseInt($('#seats-counter').text());
+      console.log(max_seats);
+      nextFlow();
+    });
+
+    $('#price_per_seat').keypress(function(e) {
+      if(e.which == 13) {
+        price_per_seat = $('#price_per_seat').val();
+        console.log(price_per_seat);
+        nextFlow();
+      // enter pressed
+      };
+    });
+
+    $('#departure_button').on('click', function(e) {
+        departure_time_local = $('#departure_time_local').val();
+        console.log(departure_time_local);
+        nextFlow();
+      // enter pressed
+    });
+
+    $('#name').keypress(function(e) {
+      if(e.which == 13) {
+        name = $('#name').val();
+        console.log(name);
+        createRide();
+
+      // enter pressed
+      };
+    });
+
+  
+
+    // var ride_flow_2 = $('#ride_flow_2');
+    // var ride_flow_3 = $('#ride_flow_3');
+    // var ride_flow_4 = $('#ride_flow_4');
+    // var ride_flow_5 = $('#ride_flow_5');
+
+
+
+    var determineNumberSeats = function() {
+      return parseInt($('#seats-counter').text());
+    };
+
+    //Seat number functions
+    var seatClick = function(direction) {
+      var numSeatsCount = determineNumberSeats();
+      numSeatsCount += direction; //execute the direction before the validity check
+      if(numSeatsCount >= 1) { //Ensure we don't go to zero or above the available seats
+        // console.log('validclick!', numSeatsCount);
+        $('#seats-counter').text(numSeatsCount);
+        // recalculatePrice();
+      };
+    };
+
+    //Click plus button
+    $('#seat-plus').on('click', function() {
+      seatClick(1);
+    });
+
+    //Click minus button
+    $('#seat-minus').on('click', function() {
+      seatClick(-1);
+    });
+    //End seat number functions
+
+    $('i#one-way').on('click', function() {
+      switchTripLength();
+    });
+
+    $('i#round-trip').on('click', function() {
+      switchTripLength(); 
+    });
+    //End trip length functions
+
+    //Process seat booking functions
+
+    var createRide = function() {
+      
+      var url = '<%= create_ride_path %>';
+
+      post_params = {
+        "ride": {
+          "origin": origin,
+          "event_id": '<%= @event.id %>',
+          "max_seats": max_seats,
+          "price_per_seat": price_per_seat,
+          "departure_time_local": departure_time_local,
+          "title": name,
+          "user_id": <%= current_user.id %>,
+          // num seats,
+          // price etc,
+        }
+      }
+
+      console.log(post_params);
+
+      $.ajax({ url: url,
+        type: 'POST',
+        data: post_params,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        success: function(response) {
+          // $('#someDiv').html(response);
+          // alert('yes');
+          alert('Woohoo! ' + response.message);
+          console.log(response);
+          // Not needed because we'll redirect somewhere on success...
+          window.location.reload();
+        },
+        error: function(response) {
+          // alert('fail');
+          alert('Oh no! ' + response.responseJSON.message);
+          // console.log(response);
+        }
+      });
+    };
+ 
+  });
+
+</script>

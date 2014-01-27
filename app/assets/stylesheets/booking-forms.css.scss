@@ -1,0 +1,68 @@
+	.noSelect {
+		-webkit-user-select: none; /* Chrome/Safari */        
+		-moz-user-select: none; /* Firefox */
+		-ms-user-select: none; /* IE10+ */
+
+		/* Rules below not implemented in browsers yet */
+		-o-user-select: none;
+		user-select: none;
+		/*margin: 0px 1px 0px 1px;*/
+		/*border-left: solid rgba(243, 243, 243, 0.9500) 1px;*/
+		border-radius: 10px;
+		background-color: #ffffff;
+	}
+
+	.cursorOn {
+		cursor: pointer;
+	}
+
+	.subtotal {
+		font-size: 0.9em;
+		color: rgba(137, 137, 137, 0.7500);
+	}
+
+	#subtotal-calculation {
+		font-weight: bold;
+		font-size: 2.2em;
+		color: rgba(130, 130, 130, 1.0000);
+	}
+
+	.bolden {
+		font-weight: bold;
+	}
+
+	.seats-counter {
+		font-size: 2em;
+		color: rgba(84, 179, 84, 1);
+	}
+
+	.seats-counter .fa-minus-square {
+		color: rgba(255, 1, 29, 0.7500);
+	}
+
+	.seats-counter .fa-plus-square {
+		color: rgba(84, 179, 84, 0.93);
+	}
+
+	.no-top-bottom-margin {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+
+	.no-top-margin {
+		margin-top: 0px;
+	}
+
+	.center-it {
+		vertical-align: top;
+		text-align: center;
+		margin-left:auto;
+		margin-right:auto;
+	}	
+
+	.checkboxes {
+		width: 100%;
+		margin: 0 auto;
+		font-size: 1.3em;
+		align: top;
+	}

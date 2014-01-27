@@ -4,6 +4,7 @@ class EventsController < ApplicationController
     # @events = Event.all
   	@event = Event.find(params[:event_id]);
     @rides = @event.rides
+    @ride = @event.rides.new
 
   end
 
