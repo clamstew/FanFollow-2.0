@@ -99,7 +99,7 @@
 				$('#typeahead').typeahead([{
 					name: 'events', 
 					valueKey: 'title',
-					remote: {url: 'http://localhost:3000/suggestions/event_suggestions/%QUERY'},
+					remote: {url: '/event_suggestions/%QUERY'},
 				}]).on('typeahead:selected', onSelected).on('typeahead:opened', onOpened);
 					function onSelected($e, datum) {
 						console.log("autocomplete match");

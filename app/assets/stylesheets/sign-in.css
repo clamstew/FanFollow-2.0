@@ -1,12 +1,3 @@
-.full-background {
-  background-image: url("/assets/signin.jpg");
-        background-size: cover, no-repeat ;
-        background-size:100%;
-        text-align: center;
-        height: 1000px;
-  
-  background-repeat:no-repeat;
-}
 
 
 .form{
@@ -16,3 +7,12 @@
 h2{
   color:#FFFFFF;
 }
+
+
+body { 
+background: url('/assets/signin.jpg') no-repeat center center fixed;
+-moz-background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+} 
