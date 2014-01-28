@@ -20,7 +20,7 @@
             <hr style="margin:8px auto">
             <ul class="cars">
               <% @user.rides.each do |ride| %>
-                <h3><a href="/rides/show/<%=ride.id%>"><%= ride.title %></a></h3>
+                <h3><a href="/rides/show/<%=ride.id%>" style="color: grey"><%= ride.title %></a></h3>
               <% end %>
             </ul>
           </div>
