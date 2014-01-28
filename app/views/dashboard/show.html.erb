@@ -2,13 +2,13 @@
 
 <%= stylesheet_link_tag 'dashboard' %>
 
-<div class = "full-background">
 
         <div class="container dashboard-wrap">
           
 
-          <div class = "col-md-3" style="background:rgba(255, 255, 255, 0.5000)">
-          <%= render partial: 'partials/current_user_bio_box' %>
+          <div class = "col-md-3">
+          <a class="" href="#">
+            <img class="img-responsive dp center" src="<%= current_user.image %>" /></a>
           </div>  
 
           <div class="col-md-5">
@@ -20,26 +20,29 @@
           </div>
           
 
-          <div class="col-md-5">
-            <br>
+  <div class="col-md-5">
+        <div class ="content-box"    
             <%= render partial: 'partials/current_user_driver_listing' %>
+        </div>
+
+        <br>
+        <br>
+        
+        <div class ="content-box">    
             <%= render partial: 'partials/current_user_seat_listing' %>
+        </div>
             <br>
             <br>
-            <h4>Looking to start a new journey?</h4><%= render partial: 'partials/search_box' %>
-          </div> 
+        <div class ="content-box"    
+            <h4>Looking to start a new journey?</h4>
+        </div>    
+     
+  </div> 
           
 
-          <br>
-          <br>
-          <div class ="col-md-9">
-            <br/>
-          <h4>Looking to start a new journey?</h4><%= render partial: 'partials/search_box' %>
-          </div>
-
-            <br>  
-
-
+    <div class="col-md-7">
+       <%= render partial: 'partials/search_box' %>
+   </div>
 
 
 
@@ -50,6 +53,5 @@
         <br>
         <br>  
 
-</div>
 
     
