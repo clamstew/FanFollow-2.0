@@ -1,5 +1,3 @@
-
-
 .form{
   margin-top: 7%;
 }
@@ -9,10 +7,10 @@ h2{
 }
 
 
-body { 
-background: url('/assets/signin.jpg') no-repeat center center fixed;
--moz-background-size: cover;
--webkit-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-} 
+  body { 
+  background: url('/assets/signin.jpg') no-repeat center center fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  } 
