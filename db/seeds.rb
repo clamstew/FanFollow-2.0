@@ -39,8 +39,8 @@
   User.find(7).rides.create!(title: "Gamble's Pickup Truck to Roo!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://image.classictrucks.com/f/tech/1002clt_2010_classic_trucks_buyers_guide/27434863/1002clt_03_o%2B2010_classic_trucks_buyers_guide%2B1970_pickup_truck.jpg", price_per_seat: "22", event_id: 1, user_id: 7)
 
   # Seats
-  User.find(5).seats.create!(ride_id: 1) 
-  User.find(3).seats.create!(ride_id: 4) 
+  User.find(5).seats.create!(ride_id:1) 
+  User.find(3).seats.create!(ride_id:4) 
   User.find(2).seats.create!(ride_id:3)
   User.find(8).seats.create!(ride_id:1)
 

@@ -21,12 +21,6 @@
       </div>
       <!-- End event info box -->
 
-      <!-- Start ride offer box -->
-      <div class="bio-box shadow">
-        <br/>
-        <%= render partial: 'events/ride_form' %>
-      </div>
-      <!-- End ride offer box -->
 
     </div>
     <!-- End left-side boxes -->
@@ -43,19 +37,24 @@
       <div class="rides-box ">
         <div class="text-content">
           <div class="rides-box">
-            <h3><i class="fa fa-road"></i> Rides</h3>
+            <h3><i class="fa fa-road"></i>Rides</h3>
             <hr style="margin:8px auto">
+            <a href="#" class="btn btn-primary btn-large"><i class="icon-white icon-road"></i> Want to drive? Click To Create A Ride</a>
         
             <% if @event.rides.count < 1 %>
               <h3><b>There's no rides yet... <br/></h3><h4>You're hitch-hiking to <%= @event.title %></b></h4>
             <%else%>
               <%= render partial: 'partials/rides' %>
+
+
             <%end%>
 
             <hr>
           </div>
         </div>
   	  </div>
+
+
     </div>
     <!-- End event description box -->
 
