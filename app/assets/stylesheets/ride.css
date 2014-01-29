@@ -17,3 +17,7 @@ h3.name{
 h5.location{
   color:#FFFFFF;
 }
+
+h5 a {
+  color:black;
+}
