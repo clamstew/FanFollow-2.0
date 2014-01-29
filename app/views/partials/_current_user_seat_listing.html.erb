@@ -1,14 +1,17 @@
- <!-- User seats listing -->
-      <div class="rides-box ">
+ <!-- User rides listing -->
+      <div class="rides-box">
         <div class="text-content">
           <div class="rides-box">
             <h4></i>Rides You're Catching:</h4>
             <hr style="margin:8px auto">
             <ul class="cars">
+              <ul>
               <% current_user.seats.each do |seat| %>
-                <h3><a href="/rides/show/<%=seat.ride.id%>"><%= seat.ride.title %></a></h3>
+                <li>
+                  <h3><a href="/rides/show/<%=seat.ride.id%>"><%= seat.ride.title %></a></h3>
+                </li>
               <% end %>
-            </ul>
+             </ul>
           </div>
         </div>
-      </div> <!-- End seats listing -->
+      </div> <!-- End rides listing -->
