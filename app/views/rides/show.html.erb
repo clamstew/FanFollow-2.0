@@ -49,8 +49,13 @@
           <div>
   			    <h4>You'll be riding with these friendly folks:</h4>
   			    <% @ride.passengers.each do |rider| %>
+              <% @riders = [] %>
+              <% @riders << rider %>
+            <% end %>
+
+            <% @riders.uniq.each do |rider| %>
+
                 <h5><%= link_to rider.first_name, show_user_path(user_id: rider.id) %></h5>
-                
   					<% end %> 
           </div>
         </div>
