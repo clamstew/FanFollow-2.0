@@ -12,15 +12,6 @@ class RidesController < ApplicationController
     @ride = @event.rides.new(user_id: current_user)
   end
 
-  # def create
-  #   @ride = Ride.new(ride_params)
-
-  #   if @ride.save
-  #     redirect_to root_path
-  #   end
-  # end
-
-
   # POST /articles
   def create
     # Add authentication here
@@ -44,11 +35,7 @@ class RidesController < ApplicationController
         render :json => save_error, :status => :error
         flash[:notice] = "Oh oh, something went wrong!"
       end
-
   end
-
-
-
 
   def edit
     @ride = Ride.find(params[:id])
