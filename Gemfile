@@ -12,6 +12,7 @@ gem 'pg'
 gem 'devise'
 
 gem 'textacular', '~> 3.0'
+gem 'chronic'
 
 group :development do
   gem 'better_errors'

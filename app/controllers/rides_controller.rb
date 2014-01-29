@@ -32,12 +32,14 @@ class RidesController < ApplicationController
     # not_enough_seats = {:message => "Not enough seats available!"}
     save_error = {:message => "Serverside save error!"}
 
-  
-     
+    # Chronic the departure date
+    departure_time_local = Chronic.parse(ride_params[:departure_time_local])
+
     @ride = @user.rides.new(ride_params)
+    @ride.departure_time_local = departure_time_local
       if @ride.save
         render :json => success, :status => :ok
-        flash[:notice] = "Have a great trip!"
+        flash[:notice] = "Have a great trip! #{@ride.departure_time_local}"
       else 
         render :json => save_error, :status => :error
         flash[:notice] = "Oh oh, something went wrong!"

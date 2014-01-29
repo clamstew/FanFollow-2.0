@@ -171,13 +171,6 @@
       };
     });
 
-    $('#departure_button').on('click', function(e) {
-        departure_time_local = $('#departure_time_local').val();
-        console.log(departure_time_local);
-        nextFlow();
-      // enter pressed
-    });
-
     var determineNumberSeats = function() {
       return parseInt($('#seats-counter').text());
     };
@@ -237,7 +230,7 @@
   //Can/should be refactored to be more DRY for both seat and price clicks.
   //End pricing functions
 
-  //Departure date function
+  //Departure date functions
 
     $('#departure-button').on('click', function() {
       departure_time_local = $('#departure').val();
@@ -258,7 +251,7 @@
       };
     });
 
-  //End departure date function
+  //End departure date functions
 
 
   //Ride name functions
