@@ -3,6 +3,11 @@
   padding-top: 3% !important;
 }
 
+.small-pic {
+  width: 2em;
+  height: 2em;
+}
+
 .col-md-5{
   padding-top:7%;
 }

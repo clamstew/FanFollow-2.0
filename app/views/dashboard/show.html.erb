@@ -6,15 +6,21 @@
   <div class="container dashboard-wrap">
     <div class="row">
       <br/>
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-11 col-md-offset-1">
 
-        <div class="description-box shadow">
-          <div class="name-box">
-            <h2>Welcome Back, <%= current_user.first_name %>!</h2>     
-          </div>  
+        <div class="content-box shadow">
+          <div class="name-box">sds
+            <h2>Welcome Back, <%= @user.first_name %>! 
+            </h2> 
+          </div> asdsd
+          <a href="<%= show_user_path(@user.id)%>">
+            <img class="img-responsive dp small-pic" src="<%= @user.image %>" />
+          </a>  
         </div> 
 
       </div>
+
+
    
 
       <div class="col-md-5 col-md-offset-1 remove-top-padding">
