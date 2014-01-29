@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :rides
-
+ 
 	# loops through all the rides, gets their attendees (arrays)
 	# and then flattens them, i.e. combines all indices into one array
 	def all_attendees

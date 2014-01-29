@@ -5,7 +5,7 @@
   position: relative;
   padding: 2px;
 }
-
+ 
 .nice-boxes::after {
 	border-radius: 4px;
   content: "";

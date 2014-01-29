@@ -5,7 +5,7 @@
             <h4></i>You're driving these trips:</h4>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <ul>
+              <ul> 
               <% @driving.each do |driving| %>
      
                   <h3><%= link_to driving.title, show_ride_path(ride_id: driving.id) %></h3>
