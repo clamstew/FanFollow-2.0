@@ -44,7 +44,7 @@
       <!-- Ride description box -->
       <div class="description-box shadow">
         <div class="name-box">
-          <h4><%= @ride.title %> is heading to <%=@ride.event.title%>!</h4>
+          <h4><%= @ride.title %> is heading to <%= link_to @ride.event.title, event_show_path(@ride.event.id)%>!</h4>
         </div>
      	  <div class="text-content">
           <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><span id='free_seats_count'><%= pluralize(@free_seats, 'seat') %></span></b> free and <% if @free_seats > 1%><%='they cost'%><% else %><%= 'it costs' %> <% end %> <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>

@@ -10,8 +10,8 @@
         <div id="ride-offer-prompt"><h4>Where's your ride leaving from?</h4></div>
        
         <div id="ride_flow_1" class="input-group">
-          <input type="text" class="form-control" id="origin" placeholder="I'm leaving from..."  autocomplete="off" />  
-          <span class="input-group-addon"><i class="fa fa-1x fa-forward"></i></span>
+          <input type="text" class="form-control" id="origin" placeholder="This party kicks off from..."  autocomplete="off" />  
+          <span class="input-group-addon" id="origin-button"><i class="fa fa-1x fa-forward"></i></span>
         </div>
 
         <div id="ride_flow_2">
@@ -20,27 +20,39 @@
             <i id="seat-minus" class="fa fa-1x fa-minus-square cursorOn"></i>
             <span id="seats-counter">1</span>
             <i id="seat-plus" class="fa fa-1x fa-plus-square cursorOn"></i>
-             <i class="fa fa-2x fa-thumbs-o-up" id="num-seats-thumb"></i>
+             <i class="fa fa-2x fa-thumbs-o-up cursorOn" id="num-seats-thumb"></i>
           </div></h4>
 
          (Preferably with seatbelts.)
         </div>
 
         <div id="ride_flow_3" class="input-group">
+
+          <h4><div id="price_per_seat-counter" class="seats-counter center-it">
+            <i id="price-minus" class="fa fa-1x fa-minus-square cursorOn"></i>
+            <span id="price-counter"><span style="font-size:0.7em">$</span><span id="price-value">10</span></span>
+            <i id="price-plus" class="fa fa-1x fa-plus-square cursorOn"></i>
+             <i class="fa fa-2x fa-thumbs-o-up cursorOn" id="price-thumb"></i>
+          </div></h4>
+
+            <!-- 
             <input type="text" class="form-control" id="price_per_seat" placeholder="Don't blow it all at once."  autocomplete="off" />
-             <span class="input-group-addon"><i class="fa fa-1x fa-forward"></i></span>
+             <span class="input-group-addon" id="price-forward"><i class="fa fa-1x fa-forward"></i></span> -->
         </div>
 
         <div id="ride_flow_4" class="input-group"> 
-          <input type="datetime-local" class="form-control" id="departure_time_local" placeholder="Chronic gem?"  autocomplete="off" />
-          <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="departure_button"></i></span>
+
+          <input type="text" class="form-control" id="departure" placeholder="Tomorrow? Next week?"  autocomplete="off" />  
+          <span class="input-group-addon" id="departure-button"><i class="fa fa-1x fa-forward"></i></span>
         </div>
 
         <div id="ride_flow_5" class="input-group"> 
-          <input type="text" class="form-control" id="name" placeholder="e.g. The Rickshaw Redemption"  autocomplete="off" />
-           <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="departure_button"></i></span>
+
+          <input type="text" class="form-control" id="ride-name" placeholder="e.g. Choo choo!"  autocomplete="off" />
+          <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="name-button"></i></span>
         </div>
-<%= csrf_meta_tag %>
+
+      <%= csrf_meta_tag %>
 
       <% else %>
         <h4><a href="/users/sign_in" style="color:grey">Please login!</a></h4>
@@ -70,9 +82,6 @@
     var departure_time_local;
     var name;
     var image;
-
-
-
 
     //Various prompts
     var prompt_1 = "<h4>Where's your ride leaving from?</h4>";
@@ -122,16 +131,28 @@
         renderPrompt();
     };
 
+  //Origin functions
     $('#origin').keypress(function(e) {
       if(e.which == 13) {
         origin = $('#origin').val();
         console.log(origin);
-        nextFlow();
+        if(origin) {
+          nextFlow();
+        }
       // enter pressed
       };
     });
 
-    //Num-seats
+    $('#origin-button').on('click', function() {
+      origin = $('#origin').val();
+      console.log(origin);
+      if(origin) {
+        nextFlow();
+      };
+    });
+  //End origin functions
+
+  //Num-seats functions
     $('#num-seats-thumb').on('click', function() {
       max_seats = parseInt($('#seats-counter').text());
       console.log(max_seats);
@@ -154,34 +175,15 @@
       // enter pressed
     });
 
-    $('#name').keypress(function(e) {
-      if(e.which == 13) {
-        name = $('#name').val();
-        console.log(name);
-        createRide();
-
-      // enter pressed
-      };
-    });
-
-  
-
-    // var ride_flow_2 = $('#ride_flow_2');
-    // var ride_flow_3 = $('#ride_flow_3');
-    // var ride_flow_4 = $('#ride_flow_4');
-    // var ride_flow_5 = $('#ride_flow_5');
-
-
-
     var determineNumberSeats = function() {
       return parseInt($('#seats-counter').text());
     };
 
-    //Seat number functions
+  //Seat number functions
     var seatClick = function(direction) {
       var numSeatsCount = determineNumberSeats();
       numSeatsCount += direction; //execute the direction before the validity check
-      if(numSeatsCount >= 1) { //Ensure we don't go to zero or above the available seats
+      if(numSeatsCount >= 1) { //Ensure we don't go below zero
         // console.log('validclick!', numSeatsCount);
         $('#seats-counter').text(numSeatsCount);
         // recalculatePrice();
@@ -192,21 +194,94 @@
     $('#seat-plus').on('click', function() {
       seatClick(1);
     });
-
     //Click minus button
     $('#seat-minus').on('click', function() {
       seatClick(-1);
     });
-    //End seat number functions
+  //End seat number functions
 
-    $('i#one-way').on('click', function() {
-      switchTripLength();
+  //Pricing functions 
+    var determinePrice = function() {
+      return parseInt($('#price-value').text());
+    };
+
+    var priceClick = function(direction) {
+      var priceCount = determinePrice();
+      priceCount += direction; //execute the direction before the validity check
+      if(priceCount >= 0) { //Ensure we don't go below zero
+        // console.log('validclick!', numSeatsCount);
+        $('#price-value').text(priceCount);
+        // recalculatePrice();
+      };
+    };
+
+    //Click plus button
+    $('#price-plus').on('click', function() {
+      priceClick(10);
     });
 
-    $('i#round-trip').on('click', function() {
-      switchTripLength(); 
+    //Click minus button
+    $('#price-minus').on('click', function() {
+      priceClick(-10);
     });
-    //End trip length functions
+
+    $('#price-thumb').on('click', function() {
+      price_per_seat = parseInt($('#price-value').text());
+      console.log(price_per_seat);
+      nextFlow();
+    });
+
+  //Can/should be refactored to be more DRY for both seat and price clicks.
+  //End pricing functions
+
+  //Departure date function
+
+    $('#departure-button').on('click', function() {
+      departure_time_local = $('#departure').val();
+      console.log(departure_time_local);
+      if(departure_time_local) {
+        nextFlow();
+      };
+    });
+
+    $('#departure').keypress(function(e) {
+      if(e.which == 13) {
+        departure_time_local = $('#departure').val();
+        console.log(departure_time_local);
+        if(departure_time_local) {
+          nextFlow();
+        };
+      // enter pressed
+      };
+    });
+
+  //End departure date function
+
+
+  //Ride name functions
+    $('#name-button').on('click', function() {
+      name = $('#name').val();
+      console.log(name);
+      if(name) {
+        nextFlow();
+        createRide();
+      };
+    });
+
+    $('#ride-name').keypress(function(e) {
+      if(e.which == 13) {
+        name = $('#ride-name').val();
+        console.log(name);
+        if(name) {
+          nextFlow();
+          createRide();
+        };
+      // enter pressed
+      };
+    });
+  //End ride name functions
+
+  
 
     //Process seat booking functions
     var user_id;
@@ -219,8 +294,6 @@
     var createRide = function() {
       
       var url = '<%= create_ride_path %>';
-
-
   
       post_params = {
         "ride": {

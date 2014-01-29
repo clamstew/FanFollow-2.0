@@ -8,7 +8,7 @@ Fanfollow::Application.routes.draw do
 
   get '/users/show/:user_id' => 'users#show', :as => 'show_user'
   
-  get '/events/show/:event_id' => 'events#show'
+  get '/events/show/:event_id' => 'events#show', :as => 'event_show'
   
   get '/rides/show/:ride_id' => 'rides#show', :as => 'show_ride'
   get '/rides/new' => 'rides#new', :as => 'new_ride'
