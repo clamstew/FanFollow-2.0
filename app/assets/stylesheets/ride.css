@@ -21,3 +21,7 @@ h5.location{
 h5 a {
   color:black;
 }
+
+#footer{
+  position:fixed;
+}

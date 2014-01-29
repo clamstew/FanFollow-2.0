@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: fanfollow-development-presentation
+  database: fanfollow-development-ABCD
   pool: 5
   port: 5432
   host: localhost
@@ -45,7 +45,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: fanfollow-test
+  database: fanfollow-ABCDE
   pool: 5
   port: 5432
   host: localhost
@@ -53,6 +53,6 @@ test:
   production:
     adapter: postgresql
     encoding: unicode
-    database: fanfollow_production
+    database: fanfollow_production_2
     pool: 5
     

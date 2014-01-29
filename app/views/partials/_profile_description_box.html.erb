@@ -8,23 +8,4 @@
         <div class="text-content">
           <p>Hi! I'm <%=@user.first_name%> and I live in <%= @user.city %>.</p>
         </div>
-      </div><br/>
-      <!-- User rides listing -->
-      <div class="rides-box ">
-        <div class="text-content">
-          <div class="rides-box">
-            <h3><i class="fa fa-road"></i>Rides</h3>
-            <hr style="margin:8px auto">
-            <ul class="cars">
-              <% @user.rides.each do |ride| %>
-                <h3><a href="/rides/show/<%=ride.id%>" style="color: grey"><%= ride.title %></a></h3>
-              <% end %>
-            </ul>
-          </div>
-        </div>
       
-      <div class="col-md-1 pull-right">
-      <!-- Spacing div - there must be a better way! -->
-      </div>
-    </div>
-    <!-- End profile description box -->

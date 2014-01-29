@@ -1,3 +1,7 @@
+<%= stylesheet_link_tag 'event' %>
+
+
+
 <div class="container">
   <div class="row">
     <!-- Start left-side boxes -->
@@ -32,7 +36,7 @@
       <!-- User description box -->
       <div class="description-box shadow">
      	  <div class="text-content">
-          <p><%= @event.title %> No descriptions yet :( </p>
+         
   		  </div>
       </div>
       <!-- User rides listing -->
@@ -41,11 +45,7 @@
           <div class="rides-box">
             <h3><i class="fa fa-road"></i> Rides</h3>
             <hr style="margin:8px auto">
-         <!--    <ul class="cars">
-              <li>Ride 1</li> 
-              <li>Ride 2</li>
-              <li>These will be dynamic</li>
-            </ul> -->
+        
             <% if @event.rides.count < 1 %>
               <h3><b>There's no rides yet... <br/></h3><h4>You're hitch-hiking to <%= @event.title %></b></h4>
             <%else%>

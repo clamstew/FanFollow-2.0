@@ -2,7 +2,7 @@
 
  <form class="form-search" id="event-search-form">
 	  <div class="input-group">
-	    <input type="text" class="form-control" id="event-search-box" placeholder="Search Events" autocomplete="on"/>
+	    <input type="text" class="form-control" id="event-search-box" placeholder="Where are we going?" autocomplete="off" />
 	    <span class="input-group-btn">
 	    	<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 	  	</span>
@@ -20,11 +20,6 @@
 		var clickOutsideSearchBox = 0;
 		var tempEventID = -1;
 		var tempBoxString;
-
-		//Key press pause time for API query
-		var pendingTimeout = 0;
-		var requiredKeyPause = 200; //Time in ms required after last keypress before querying seat geek
-		var timer = 0;
 
 		//Handle a form submission through jquery!
 		$(theForm).submit(function(e) {
@@ -120,74 +115,26 @@
 			var searchQueryArray = searchQuery.split('');
 			//Reg expression search method
 			// Add more indexes to require more letters
-			if (searchQueryArray.length >= 3) {
-
-				//Seat geek AJAX API search
-				var seatGeekQuery = function(query) {	
-					var url = 'http://api.seatgeek.com/2/events?q=' + query + '&taxonomies.name=music_festival';
-					$.get(url, function (data) {
-				    console.log("The full response:", data);
-				    appendRemoteResults(data);
-					});
-				};
-
-				var appendLocalResults = function(i) {
+			if (searchQueryArray.length >= 4) {
+				var appendResults = function(i) {
 					$('#search-suggestions').append('<div class="suggestion" id="result_'+ i + '">' +result.input + '</br>' + '</div>');
 					suggestionListen();
 				};
-
-				var appendRemoteResults = function(data) {
-					
-					//Temp debug check
-					if (data.events.length == 0 ) {
-						console.log('no2results');
-						return;
-					} else {
-						console.log('results!');
-					};
-
-					for(var i=0; i<data.events.length; i++) {
-						$('#search-suggestions').append('<div class="suggestion" id="result_remote_'+ i + '">' + data.events[i].title + '</br>' + '</div>');
-					};
-					//suggestionListen();
-				};
-
 				clearResults(); 
-				//Local event table search
-				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1]  + '+' + searchQueryArray[2], 'i');
+				var regExpSearch = new RegExp(searchQueryArray[0] + '+' + searchQueryArray[1] + '+' + searchQueryArray[2] + '+' + searchQueryArray[3], 'i');
+
 				for (var i=1; i<=eventsJSONLength; i++) {
 					console.log(eventsJSON[i]);
 					var result = regExpSearch.exec(eventsJSON[i]);
 					if (result != null) {
-						//Local result match - display it!
 						console.log('match!', result);
-						appendLocalResults(i);
+						appendResults(i);
 					};
 				};
-
-				//Seat geek stuff!
-				//Time since last keypress - prevent flooding of the seat geek API by requiring a pause after last keypress before querying
-				var startKeyTime = function() {
-				  timer = setTimeout(function() {
-					seatGeekQuery(searchQuery); //Queery the SeatGeekAPI with the searchQuery
-					pendingTimeout = 0; //Only gets changed once the timeout is executed.
-					}, requiredKeyPause);
-				};
-
-				if(pendingTimeout == 1) { //If there is already a setTimeout timer running
-					clearTimeout(timer); //Clear it
-					startKeyTime(); //Start a new timer
-				} else {
-					startKeyTime(); //Start a new timer
-					pendingTimeout = 1;
-				}
-
 			} else {
 				clearResults();
 			};
-		});
 
- //Search all festival data: 
- // http://api.seatgeek.com/2/events?taxonomies.name=music_festival&per_page=10000
+		});
  		
 	</script>

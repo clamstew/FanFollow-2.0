@@ -11,6 +11,17 @@
           <div><%= f.label :last_name %><br />
           <%= f.text_field :last_name, :autofocus => true, :placeholder => 'Last Name' %></div>
 
+          <div><%= f.label :city %><br />
+          <%= f.text_field :city, :autofocus => true, :placeholder => 'City' %></div>
+
+          <div><%= f.label :state %><br />
+          <%= f.text_field :state, :autofocus => true, :placeholder => 'State' %></div>
+
+          <div><%= f.label :country %><br />
+          <%= f.text_field :country, :autofocus => true, :placeholder => 'Country' %></div>
+
+           <div><%= f.label :image %><br />
+          <%= f.text_field :image, :autofocus => true, :placeholder => 'Image' %></div>
 
       <div><%= f.label :email %><br />
           <%= f.email_field :email, :autofocus => true, :placeholder => 'Email address' %></div>
@@ -23,9 +34,11 @@
 
       <br>
 
-      <div><%= f.submit "Sign up",:class=>'btn btn-primary' %></div>
+        <%= render "devise/shared/links" %>
 
-      <%= render "devise/shared/links" %>
+      <div><%= f.submit "Sign up"%></div>
+
+    
       
     <% end %>
 

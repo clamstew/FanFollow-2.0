@@ -188,7 +188,9 @@ p.copyright {
 	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
 
-
+.col-md-8{
+	padding-left: 37%;
+}
 
 
 
