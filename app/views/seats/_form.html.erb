@@ -2,9 +2,14 @@
 
 <!-- Multiple Radios -->
 
+
+
 <hr class="no-top-margin">
 <div class="row">
   <div class="col-md-4 col-md-offset-4" id="are-you-in">
+    <% if flash[:notice] %>
+      <h4><div class="notice" style="color:rgba(185, 4, 5, 0.6500)"><%= flash[:notice] %></div></h4>
+      <% end %>
     <!-- Login check -->
     <% if current_user != nil %>
       <p><b><h3>Are you in?</h3></b></p>
@@ -91,7 +96,7 @@
 
   $(document).ready(function() {
     if(<%= @free_seats %> <= 0) {
-      $('#booking-area').html("<center><em><h3>You're not tripping with these folks - there's no seats left! </h3></em></center>");
+      $('#booking-area').html("<center><em><h4>You're not tripping with these folks - there's no seats left! </h4></em></center>");
     }
 
 
@@ -207,8 +212,7 @@
         success: function(response) {
           // $('#someDiv').html(response);
           // alert('yes');
-          alert('Woohoo! ' + response.message);
-          console.log(response);
+          console.log('Woohoo! ', response.message);
           // Not needed because we'll redirect somewhere on success...
           window.location.reload();
 

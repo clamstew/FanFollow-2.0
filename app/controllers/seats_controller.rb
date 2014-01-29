@@ -36,6 +36,7 @@ class SeatsController < ApplicationController
           count += 1
           if count == requested_seats
             render :json => success, :status => :ok
+            flash[:notice] = "Ride booked!"
           end
         else 
           render :json => save_error, :status => :error
