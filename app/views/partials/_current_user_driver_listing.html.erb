@@ -7,9 +7,9 @@
             <ul class="cars">
               <ul>
               <% @driving.each do |driving| %>
-                <li>
+     
                   <h3><%= link_to driving.title, show_ride_path(ride_id: driving.id) %></h3>
-                </li>
+            
               <% end %>
              </ul>
           </div>

@@ -16,7 +16,7 @@
             <h3><i class="fa fa-road"></i>Rides</h3>
             <hr style="margin:8px auto">
             <ul class="cars">
-              <% @user.rides.each do |ride| %>
+              <% @user.ride_offers.each do |ride| %>
                 <h3><a href="/rides/show/<%=ride.id%>" style="color: grey"><%= ride.title %></a></h3>
               <% end %>
             </ul>
