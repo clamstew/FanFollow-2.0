@@ -4,6 +4,9 @@
 
   <div class="col-md-11 noSelect">
     <p><b><h3>Driving to <%=@event.title%>?</h3></b></p><br/>
+    <% if flash[:notice] %>
+      <h4><span class="notice" style="color:rgba(185, 4, 5, 0.6500)"><%= flash[:notice] %></span></h4>
+      <% end %>
       <% if current_user != nil %>
         
         
@@ -49,7 +52,7 @@
         <div id="ride_flow_5" class="input-group"> 
 
           <input type="text" class="form-control" id="ride-name" placeholder="e.g. Choo choo!"  autocomplete="off" />
-          <span class="input-group-addon"><i class="fa fa-1x fa-forward" id="name-button"></i></span>
+          <span class="input-group-addon" id="name-button"><i class="fa fa-1x fa-forward"></i></span>
         </div>
 
       <%= csrf_meta_tag %>
@@ -260,7 +263,7 @@
 
   //Ride name functions
     $('#name-button').on('click', function() {
-      name = $('#name').val();
+      name = $('#ride-name').val();
       console.log(name);
       if(name) {
         nextFlow();
@@ -319,14 +322,12 @@
         success: function(response) {
           // $('#someDiv').html(response);
           // alert('yes');
-          alert('Woohoo! ' + response.message);
-          console.log(response);
-          // Not needed because we'll redirect somewhere on success...
+          console.log('Woohoo! ', response.message);
           window.location.reload();
         },
         error: function(response) {
           // alert('fail');
-          alert('Oh no! ' + response.responseJSON.message);
+          console.log('Oh no! ', response.responseJSON.message);
           // console.log(response);
         }
       });

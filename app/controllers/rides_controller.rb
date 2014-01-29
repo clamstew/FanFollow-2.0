@@ -37,8 +37,10 @@ class RidesController < ApplicationController
     @ride = @user.rides.new(ride_params)
       if @ride.save
         render :json => success, :status => :ok
+        flash[:notice] = "Have a great trip!"
       else 
         render :json => save_error, :status => :error
+        flash[:notice] = "Oh oh, something went wrong!"
       end
 
   end
