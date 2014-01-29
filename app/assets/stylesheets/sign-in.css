@@ -1,14 +1,24 @@
-.full-background {
-  background-image: url("/assets/signin.jpg");
-        background-size: cover;
-        text-align: center;
-}
-
-
 .form{
   margin-top: 7%;
 }
 
 h2{
+  color:#FFFFFF;
+}
+
+
+body { 
+  background: url('/assets/signin.jpg') no-repeat center center fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  } 
+
+label{
+  color:#FFFFFF;
+}
+
+h5.location{
   color:#FFFFFF;
 }

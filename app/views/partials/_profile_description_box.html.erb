@@ -1,7 +1,4 @@
 <%= stylesheet_link_tag 'profile-page' %>
-
-
-<!-- Profile description box -->
     <div class="col-md-7 ">
       <!-- User description box -->
       <div class="description-box shadow">
@@ -9,7 +6,7 @@
           <h4>Hey, I'm <%= @user.first_name %>!</h4>
         </div>
         <div class="text-content">
-          <p>Well, what can I say?! I'm <%=@user.first_name%> and I live in <%= @user.city %>. </p>
+          <p>Hi! I'm <%=@user.first_name%> and I live in <%= @user.city %>.</p>
         </div>
       </div><br/>
       <!-- User rides listing -->
@@ -25,7 +22,7 @@
             </ul>
           </div>
         </div>
-      </div> <!-- End rides listing -->
+      
       <div class="col-md-1 pull-right">
       <!-- Spacing div - there must be a better way! -->
       </div>

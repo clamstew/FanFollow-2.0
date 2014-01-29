@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'profile-page' %>
+<%= stylesheet_link_tag 'ride' %>
+
 	<br/>
 <div class="container">
   <div class="row">
@@ -7,34 +9,27 @@
     <div class="col-md-3 col-md-offset-1">
 
       <!-- Start ride info section -->
-  		<div class="bio-box shadow">
+  		
         <a class="" href="#">
             <img class="img-responsive dp center" src="<%= @ride.image %>" />
         </a>
         <h3 class="name"><%= @ride.title %></h3>
-        <h5 class="location">Leaving from <%= @ride.origin %>!<br/><small></small></h5>
+        <h5 class="location">Leaving from <%= @ride.origin %><br/><small></small></h5>
         
         <hr style="margin:8px auto">
-      </div>
+      
       <!-- End ride info section -->
 
 <hr>
       <!-- Driver bio section -->
-      <div class="bio-box shadow">
+    
         <a class="" href="/users/show/<%=@driver.id%>">
             <img class="img-responsive dp center" src="<%= @driver.image %>" />
         </a>
-        <h3 class="name">I'm <%= @driver.first_name %>, get in my van!</h3>
-        <h5 class="location"><%= @driver.city %>, <%= @driver.state %>, <%= @driver.country %><br/><small><%=@driver.role%></small></h5>
+        <h3 class="name">Hi, I'm <%= @driver.first_name %>!</h3>
+        <h5 class="location"><%= @driver.city %>, <%= @driver.state %><br/><small><%=@driver.role%></small></h5>
         
-        <hr style="margin:8px auto">
-        <div class="interests center">
-          <span class="label label-default">Star Wars</span>
-          <span class="label label-default">Anime</span>
-          <span class="label label-info">Phish</span>
-          <span class="label label-default">Grateful Dead</span>
-        </div>
-      </div>
+          
       <!-- End driver bio section -->
 
     </div> 
@@ -49,7 +44,6 @@
      	  <div class="text-content">
           <p><h3>Leaving on <%=@ride.departure_time_local.strftime('%B %e, %Y')%>, I've got <b style="color:red"><span id='free_seats_count'><%= pluralize(@free_seats, 'seat') %></span></b> free and <% if @free_seats > 1%><%='they cost'%><% else %><%= 'it costs' %> <% end %> <b style="color:green">$<%= @ride.price_per_seat %></b> a pop each way!</h3></p>
           <div class="ride-description">
-          <hr class="no-top-bottom-margin">We'll leave on Friday. Also, I don't have a license.</div>
       
 		      <%= render :partial => 'seats/form' %>
           
@@ -57,6 +51,7 @@
   			    <h4>You'll be riding with these friendly folks:</h4>
   			    <% @ride.passengers.each do |rider| %>
                 <h5><%= link_to rider.first_name, show_user_path(user_id: rider.id) %></h5>
+                
   					<% end %> 
           </div>
         </div>
