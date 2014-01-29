@@ -13,6 +13,7 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height:100%;
 } 
 
 body::after {
@@ -25,10 +26,11 @@ body::after {
   opacity: 0.9;
   top: 72px;
   left: 10%;
-  bottom: -25%;
+  bottom: 1px;
   right: 10%;
   position: absolute;
   z-index: -1;   
+  min-height:100%;
 }
 
 /*Uncomment the next two if you want background with opacity*/

@@ -24,9 +24,10 @@
     
         <a class="" href="/users/show/<%=@driver.id%>">
             <img class="img-responsive dp center" src="<%= @driver.image %>" />
-        </a>
-        <h3 class="name">Hi, I'm <%= @driver.first_name %>!</h3>
-        <h5 class="location"><%= @driver.city %>, <%= @driver.state %><br/><small><%=@driver.role%></small></h5>
+        
+        <h3 class="name">Hi! I'm <%= @driver.first_name %>,</h3><h4 class="name"> and I'll be your driver!</h4>
+        <h5 class="location"><%= @driver.city %>, <%= @driver.state %><br/><br/><small><%=@driver.role%></small></h5>
+      </a>
         
           
       <!-- End driver bio section -->

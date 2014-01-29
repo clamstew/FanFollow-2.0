@@ -1,14 +1,27 @@
  <!-- User seats listing -->
-      <div class="rides-box ">
-        <div class="text-content">
-          <div class="rides-box">
-            <h4></i>Rides you're Catching:</h4>
-            <hr style="margin:8px auto">
-            <ul class="cars">
-              <% current_user.seats.each do |seat| %>
-                <h3><a href="/rides/show/<%=seat.ride.id%>"><%= seat.ride.title %></a></h3>
-              <% end %>
-            </ul>
-          </div>
-        </div>
-      </div> <!-- End seats listing -->
+  <div class="rides-box ">
+    <div class="text-content">
+      <div class="rides-box">
+        <h4></i>Rides you're Catching:</h4>
+        <hr style="margin:8px auto">
+        <ul class="cars">
+          <% if @user.seats.count > 0 %>
+           
+            <% @user.seats.each do |seat| %>
+              <% @seatsArray = [] %>
+              <% @seatsArray << seat %>
+            <% end %>
+
+            <% @seatsArray.uniq.each do |seat| %>
+              <h3><%= link_to seat.ride.title, show_ride_path(ride_id: seat.ride.id) %> 
+              <% @friends = current_user.seats.where(ride_id: seat.ride.id).count%>
+              <% if @friends > 0 %> 
+                <span style="font-size: 0.8em">with <%=@friends%> friends</h3>
+              <%end%> 
+            <% end %> 
+
+          <% end %> 
+        </ul>
+      </div>
+    </div>
+  </div> <!-- End seats listing -->
