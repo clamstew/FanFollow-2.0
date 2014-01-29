@@ -31,16 +31,16 @@
   Event.create!(title: "Big Day Out, Syd", city: "Sydney", state: "NSW", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
   Event.create!(title: "Big Day Out, Mel", city: "Melbourne", state: "VIC", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
   Event.create!(title: "Big Day Out, Bris", city: "Brisbane", state: "QLD", country: "Australia", url: "http://www.google.com.au", image: "http://www.boudist.com/wp-content/uploads/2010/01/Big-Day-Out-Sydney-2010-779.jpg", start_datetime_local: "2014-08-12 00:00:00 UTC", end_datetime_local: "2014-08-15 00:00:00 UTC")
-
+  
   # Rides
   User.find(3).rides.create!(title: "Driving My Mom's Car To 'Roo!' ", origin: "Austin", departure_time_local: "2014-06-11 00:00:00 UTC", max_seats: 4, image: "http://4.bp.blogspot.com/-3bPQglKDLO4/Tx-esRlrVbI/AAAAAAAAXRI/nX6_leXzwzY/s640/vw-bus-stoled-35-years-ago-returns-to-owner-13067_1.jpg", price_per_seat: "38", event_id: 1, user_id: 3)
-  User.find(4).rides.create!(title: "Kendra's Party Van To Coachella!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://www.conversionvanland.com/new_vans/images/links/Custom_Luxury_Conversion_Van_11-15-2007_021.jpg", price_per_seat: "89", event_id: 5, user_id: 4)
-  User.find(4).rides.create!(title: "Kendra's Party Van To 'Roo!!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://www.conversionvanland.com/new_vans/images/links/Custom_Luxury_Conversion_Van_11-15-2007_021.jpg", price_per_seat: "89", event_id: 1, user_id: 4)
+  User.find(4).rides.create!(title: "Kendra's Party Van!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://www.conversionvanland.com/new_vans/images/links/Custom_Luxury_Conversion_Van_11-15-2007_021.jpg", price_per_seat: "89", event_id: 5, user_id: 4)
+  User.find(4).rides.create!(title: "Kendra's Party Van!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://www.conversionvanland.com/new_vans/images/links/Custom_Luxury_Conversion_Van_11-15-2007_021.jpg", price_per_seat: "89", event_id: 1, user_id: 4)
   User.find(7).rides.create!(title: "Gamble's Pickup Truck to Roo!", origin: "Austin", departure_time_local: "2014-06-10 00:00:00 UTC", max_seats: 3, image: "http://image.classictrucks.com/f/tech/1002clt_2010_classic_trucks_buyers_guide/27434863/1002clt_03_o%2B2010_classic_trucks_buyers_guide%2B1970_pickup_truck.jpg", price_per_seat: "22", event_id: 1, user_id: 7)
 
   # Seats
   User.find(5).seats.create!(ride_id: 1) 
-  User.find(3).seats.create!(ride_id: 2) 
+  User.find(3).seats.create!(ride_id: 4) 
   User.find(2).seats.create!(ride_id:3)
   User.find(8).seats.create!(ride_id:1)
 
