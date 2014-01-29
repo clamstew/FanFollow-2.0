@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'event' %>
+
 <div class="container">
   <div class="row">
     <!-- Start left-side boxes -->
@@ -5,7 +7,7 @@
   	<div class="col-md-3 col-md-offset-1">
 
       <!-- Start event info box -->
-  		<div class="bio-box shadow">
+  		<div class="">
         <a class="" href="#">
             <img class="img-responsive dp center" src="<%= @event.image %>" />
         </a>
@@ -21,6 +23,11 @@
       <div class="bio-box shadow">
         <br/>
         <%= render partial: 'events/ride_form' %>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <!-- Gotta take care of the div resizing for the form? -->
       </div>
       <!-- End ride offer box -->
 

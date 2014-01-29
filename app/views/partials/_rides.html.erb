@@ -61,14 +61,16 @@
 	<div class="large-12 columns" style="overflow: visible">
 		<ul class="polaroids large-block-grid-4 small-block-grid-2">
 	 
-	  <% @rides.each do |ride| %>
-    <li>
-      <a href="/rides/show/<%=ride.id%>" title="<%=ride.title%>">
-        <img alt="<%=ride.title%>" src="<%=ride.image%>" />
-        <div class="ride_title"><%=ride.title%></div>
-        <div class="ride_price">$<%=ride.price_per_seat%></div>
-      </a>
-    </li>
+	  <% @rides.each_with_index do |ride, index| %>
+      <% if index < @rides.count %>  <!-- Fix extra time rendering bug??? -->
+        <li>
+          <a href="/rides/show/<%=ride.id%>" title="<%=ride.title%>">
+            <img alt="<%=ride.title%>" src="<%=ride.image%>" />
+            <div class="ride_title"><%=ride.title%></div>
+            <div class="ride_price">$<%=ride.price_per_seat%></div>
+          </a>
+        </li>
+      <% end %>
     <% end %>
 
    </ul>

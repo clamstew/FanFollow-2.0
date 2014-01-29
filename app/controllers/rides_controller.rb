@@ -39,7 +39,7 @@ class RidesController < ApplicationController
     @ride.departure_time_local = departure_time_local
       if @ride.save
         render :json => success, :status => :ok
-        flash[:notice] = "Have a great trip! #{@ride.departure_time_local}"
+        flash[:notice] = "Have a great trip!"
       else 
         render :json => save_error, :status => :error
         flash[:notice] = "Oh oh, something went wrong!"

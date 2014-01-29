@@ -3,50 +3,49 @@
 <%= stylesheet_link_tag 'dashboard' %>
 
 
-        <div class="container dashboard-wrap">
-          
+  <div class="container dashboard-wrap">
+    <div class="row">
+      <br/>
+      <div class="col-md-10 col-md-offset-1">
 
-          <div class = "col-md-3">
-          <a class="" href="#">
-            <img class="img-responsive dp center" src="<%= current_user.image %>" /></a>
+        <div class="description-box shadow">
+          <div class="name-box">
+            <h2>Welcome Back, <%= current_user.first_name %>!</h2>     
           </div>  
+        </div> 
 
-          <div class="col-md-5">
-            <div class="description-box shadow">
-              <div class="name-box">
-                <h2>Welcome Back,<%= current_user.first_name %>!</h2>      
-              </div>  
-            </div>  
-          </div>
-          
+      </div>
+   
 
-  <div class="col-md-5">
-        <div class ="content-box"    
+      <div class="col-md-5 col-md-offset-1 remove-top-padding">
+       
+        <div class ="content-box">    
             <%= render partial: 'partials/current_user_driver_listing' %>
         </div>
 
-        <br>
-        <br>
-        
+      </div>
+
+      <div class="col-md-5 remove-top-padding">
+      
         <div class ="content-box">    
             <%= render partial: 'partials/current_user_seat_listing' %>
         </div>
             <br>
             <br>
-        <div class ="content-box"    
+        <div class ="content-box">    
             <h4>Looking to start a new journey?</h4>
         </div>    
      
-  </div> 
-          
+      </div> 
 
-    <div class="col-md-7">
-       <%= render partial: 'partials/search_box' %>
-   </div>
+    </div> 
+    <!-- End row -->
+
+  </div>
+  <!-- End container -->
+  
 
 
-
-        </div>  
 
         <br>
         <br>
