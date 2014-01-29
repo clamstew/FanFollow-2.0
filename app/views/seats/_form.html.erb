@@ -56,7 +56,6 @@
         </div>        
         <div class="col-md-6">
            <!-- Add cost handling etc. etc. -->
-          <button id="process-seats" name="process-seats-button" class="btn btn-success cursorOn">Go!</button>
           <%= csrf_meta_tag %>
           
 
@@ -64,7 +63,7 @@
           <form action="" method="POST">
             <script src="https://checkout.stripe.com/checkout.js"></script>
 
-            <button id="customButton">Purchase</button>
+            <button id="customButton" class="btn btn-success cursorOn">Do it!</button>
 
           </form>
 
@@ -137,10 +136,11 @@
 
     //Seat number functions
     var seatClick = function(direction) {
-      var max_seats = <%=@ride.max_seats%>;
+      // var max_seats = <%=@ride.max_seats%>;
       var numSeatsCount = determineNumberSeats();
+      var free_seats = <%= @free_seats %>
       numSeatsCount += direction; //execute the direction before the validity check
-      if(numSeatsCount >= 1 && numSeatsCount <= max_seats) { //Ensure we don't go to zero or above the available seats
+      if(numSeatsCount >= 1 && numSeatsCount <= free_seats) { //Ensure we don't go to zero or above the available seats
         // console.log('validclick!', numSeatsCount);
         $('#seats-counter').text(numSeatsCount);
         recalculatePrice();
@@ -254,6 +254,7 @@
    
 
     document.getElementById('customButton').addEventListener('click', function(e) {
+    
       // Open Checkout with further options
       handler.open({
         name: 'FanFollow',
