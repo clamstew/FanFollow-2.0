@@ -66,41 +66,6 @@
 
             <button id="customButton">Purchase</button>
 
-            <script>
-              var handler = StripeCheckout.configure({
-                key: 'pk_test_QutWa243s05JAn8caYXxG91I',
-                image: '/images/ff-logo.png',
-                token: function(token, args) {
-                  // Use the token to create the charge with a server-side script.
-                }
-              });
-
-              var to_pay =  function() {
-                var amount = $('#subtotal-calculation').text();
-                amount = parseInt(amount*100);
-                console.log(amount);
-                return amount;
-              }
-
-              <% if current_user != nil %>
-                var user_email = '<%= current_user.email%>';
-              <% else %>
-                var user_email = '';
-              <% end %>
-
-             
-
-              document.getElementById('customButton').addEventListener('click', function(e) {
-                // Open Checkout with further options
-                handler.open({
-                  name: 'FanFollow',
-                  description: 'Ride to <%=@ride.event.title%>',
-                  amount: to_pay(),
-                  email: user_email,
-                });
-                e.preventDefault();
-              });
-            </script>
           </form>
 
           <!-- End stripe -->
@@ -213,7 +178,8 @@
 
     //Process seat booking functions
 
-    $('#process-seats').on('click', function() {
+    // $('#process-seats').on('click', function() {
+    var processSeats = function() {
       var tripLength = determineTripLength();
       var numSeatsCount = determineNumberSeats();
       var ride_id = <%= @ride.id %>
@@ -256,11 +222,52 @@
 
 
 
-
-    });
+    };
+    // });
  
-  });
 
+
+
+  // Stripe scripts
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_QutWa243s05JAn8caYXxG91I',
+      image: '/images/ff-logo.png',
+      closed: processSeats,
+      token: function(token, args) {
+        // Use the token to create the charge with a server-side script.
+      }
+    });
+
+    var to_pay =  function() {
+      var amount = $('#subtotal-calculation').text();
+      amount = parseInt(amount*100);
+      console.log(amount);
+      return amount;
+    }
+
+    <% if current_user != nil %>
+      var user_email = '<%= current_user.email%>';
+    <% else %>
+      var user_email = '';
+    <% end %>
+
+   
+
+    document.getElementById('customButton').addEventListener('click', function(e) {
+      // Open Checkout with further options
+      handler.open({
+        name: 'FanFollow',
+        description: 'Ride to <%=@ride.event.title%>',
+        amount: to_pay(),
+        email: user_email,
+      });
+      e.preventDefault();
+    });
+  // End stripe scripts
+
+
+  });
+  // End document on ready
   
 
 </script>
