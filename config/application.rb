@@ -12,7 +12,6 @@ require "sprockets/railtie"
 Bundler.require(:default, Rails.env)
 
 
-
 module Fanfollow
   class Application < Rails::Application
 
