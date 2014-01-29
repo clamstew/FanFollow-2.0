@@ -3,7 +3,7 @@ body, h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
 }
 
-.row{
+.row {
   padding-top:5%;
 }
 
@@ -29,7 +29,7 @@ body::after {
   right: 10%;
   position: absolute;
   z-index: -1;   
-}*/
+}
 
 /*Uncomment the next two if you want background with opacity*/
 /*
