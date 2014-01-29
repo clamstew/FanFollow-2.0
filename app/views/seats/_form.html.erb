@@ -69,7 +69,7 @@
             <script>
               var handler = StripeCheckout.configure({
                 key: 'pk_test_QutWa243s05JAn8caYXxG91I',
-                image: '/square-image.png',
+                image: '/images/ff-logo.png',
                 token: function(token, args) {
                   // Use the token to create the charge with a server-side script.
                 }
@@ -82,10 +82,10 @@
                 return amount;
               }
 
-              <% if @user != nil %>
-                var user_email = <%=@user.email%>
+              <% if current_user != nil %>
+                var user_email = '<%= current_user.email%>';
               <% else %>
-                var user_email = ''
+                var user_email = '';
               <% end %>
 
              
@@ -93,8 +93,8 @@
               document.getElementById('customButton').addEventListener('click', function(e) {
                 // Open Checkout with further options
                 handler.open({
-                  name: 'Demo Site',
-                  description: 'Fanfollow ride to <%=@ride.title%>',
+                  name: 'FanFollow',
+                  description: 'Ride to <%=@ride.event.title%>',
                   amount: to_pay(),
                   email: user_email,
                 });
